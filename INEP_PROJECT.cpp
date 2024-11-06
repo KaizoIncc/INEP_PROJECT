@@ -1,19 +1,38 @@
-// INEP_PROJECT.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/statement.h>
 #include <iostream>
+#include <mysql_connection.h>
+#include <mysql_driver.h>
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	sql::mysql::MySQL_Driver* driver = NULL;
+	sql::Connection* con = NULL;
+	sql::Statement* stmt = NULL;
+	try {
+		driver = sql::mysql::get_mysql_driver_instance();
+		con = driver->connect("URL_servidor:port",
+			"usuari", "contrasenya");
+		con->setSchema("nom_base_dades");
+		stmt = con->createStatement();
+		// Sentència SQL per obtenir totes les files de la taula usuari
+		string sql = "SELECT * FROM usuari";
+		sql::ResultSet* res = stmt->executeQuery(sql);
+		// Bucle per recórrer les dades retornades mostrant les dades de cada fila
+		while (res->next()) {
+			// a la funció getString fem servir el nom de la columna de la taula
+			cout << "Sobrenom: " << res->getString("sobrenom") << endl;
+			cout << "Nom: " << res->getString("nom") << endl;
+			cout << "Correu: " << res->getString("correu_electronic") << endl;
+		}
+		con->close();
+	}
+	catch (sql::SQLException& e) {
+		std::cerr << "SQL Error: " << e.what() << std::endl;
+		// si hi ha un error es tanca la connexió (si esta oberta)
+		if (con != NULL) con->close();
+	}
+	return 0;
 }
-
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln

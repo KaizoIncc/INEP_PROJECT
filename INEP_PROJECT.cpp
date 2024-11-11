@@ -1,7 +1,7 @@
 #include "ConnexioBD.h"
 
 int main() {
-    string servidor = "ubiwan.epsevg.upc.edu", usuari = "inep06", contrasenya = "ahp8Oa4ohxaeyu", bbdd = "inep06";
+    string servidor, usuari, contrasenya, bbdd;
     cout << "Introdueix el servidor: "; cin >> servidor;
     cout << "Introdueix l'usuari: "; cin.ignore(); getline(cin, usuari);
     cout << "Introdueix la contrasenya: "; cin >> contrasenya;

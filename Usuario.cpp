@@ -1,8 +1,8 @@
 #include "Usuario.h"
 
-void Usuario::registrarUsuari() {
+void Usuario::registrarUsuari(const string& servidor, const string& usuario, const string& password, const string& database) {
     try {
-        ConnexioBD connexio("URL_servidor:port", "usuari", "contrasenya", "nom_base_dades");
+        ConnexioBD connexio(servidor, usuario, password, database);
 
         string sobrenom, nom, correu;
         cout << "Introdueix el sobrenom: ";
@@ -23,9 +23,9 @@ void Usuario::registrarUsuari() {
     }
 }
 
-void Usuario::consultaUsuari() {
+void Usuario::consultaUsuari(const string& servidor, const string& usuario, const string& password, const string& database) {
     try {
-        ConnexioBD connexio("URL_servidor:port", "usuari", "contrasenya", "nom_base_dades");
+        ConnexioBD connexio(servidor, usuario, password, database);
 
         string sobrenom;
         cout << "Introdueix el sobrenom de l'usuari: ";
@@ -49,9 +49,9 @@ void Usuario::consultaUsuari() {
     }
 }
 
-void Usuario::modificarUsuari() {
+void Usuario::modificarUsuari(const string& servidor, const string& usuario, const string& password, const string& database) {
     try {
-        ConnexioBD connexio("URL_servidor:port", "usuari", "contrasenya", "nom_base_dades");
+        ConnexioBD connexio(servidor, usuario, password, database);
 
         string sobrenom, nouNom, nouCorreu;
         cout << "Introdueix el sobrenom de l'usuari a modificar: ";
@@ -72,9 +72,9 @@ void Usuario::modificarUsuari() {
     }
 }
 
-void Usuario::esborrarUsuari() {
+void Usuario::esborrarUsuari(const string& servidor, const string& usuario, const string& password, const string& database) {
     try {
-        ConnexioBD connexio("URL_servidor:port", "usuari", "contrasenya", "nom_base_dades");
+        ConnexioBD connexio(servidor, usuario, password, database);
 
         string sobrenom;
         cout << "Introdueix el sobrenom de l'usuari a esborrar: ";

@@ -1,15 +1,11 @@
 #include "ConnexioBD.h"
 
 int main() {
-    string servidor = "ubiwan.epsevg.upc.edu", usuari = "inep06", contrasenya = "ahp8Oa4ohxaeyu", bbdd = "inep06";
-    cout << "Introdueix el servidor: "; cin >> servidor;
-    cout << "Introdueix l'usuari: "; cin.ignore(); getline(cin, usuari);
-    cout << "Introdueix la contrasenya: "; cin >> contrasenya;
-    cout << "Introdueix el nom de la bbdd: "; cin >> bbdd;
+    string servidor = "ubiwan.epsevg.upc.edu:3306", usuari = "inep06", contrasenya = "ahp8Oa4ohxaeyu", bbdd = "inep06";
 
     try {
         // Crear instancia de ConnexioBD
-        ConnexioBD connexio(servidor, usuari, contrasenya, bbdd);
+        ConnexioBD connexio(servidor, usuari, bbdd, contrasenya);
 
         int opcio;
         do {

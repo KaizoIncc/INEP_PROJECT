@@ -4,12 +4,12 @@ ConnexioBD::ConnexioBD(const string& host, const string& user, const string& bbd
     driver = get_mysql_driver_instance();
     con = driver->connect(host, user, password);
     con->setSchema(bbdd);
-    cout << "Conexión establecida con éxito." << endl;
+    cout << "Conexion establecida con exito." << endl;
 }
 
 ConnexioBD::~ConnexioBD() {
     delete con;
-    cout << "Conexión cerrada con éxito." << endl;
+    cout << "Conexion cerrada con exito." << endl;
 }
 
 ResultSet* ConnexioBD::executarConsulta(const string& consultaSQL) {
@@ -32,7 +32,7 @@ void ConnexioBD::registrarUsuari() {
     cout << "Introdueix nom: ";
     cin.ignore();
     getline(cin, nom);
-    cout << "Introdueix correu electrònic: ";
+    cout << "Introdueix correu electronic: ";
     cin >> correu;
 
     string sql = "INSERT INTO Usuari (sobrenom, nom, correu_electronic) VALUES ('"
@@ -66,7 +66,7 @@ void ConnexioBD::modificarUsuari() {
     cout << "Introdueix nou nom: ";
     cin.ignore();
     getline(cin, nouNom);
-    cout << "Introdueix nou correu electrònic: ";
+    cout << "Introdueix nou correu electronic: ";
     cin >> nouCorreu;
 
     string sql = "UPDATE Usuari SET nom='" + nouNom + "', correu_electronic='"

@@ -1,11 +1,33 @@
 #include "ConnexioBD.h"
+#include <fstream>
+#include <sstream>
+#include <map>
+
+map<string, string> llegirConfig(const string& nameFile) {
+    map<string, string> config;
+    ifstream fitxer(nameFile);
+    string linia;
+
+    if (fitxer.is_open()) {
+        while (getline(fitxer, linia)) {
+            istringstream iss(linia);
+            string clau, valor;
+            if (getline(iss, clau, '=') && getline(iss, valor)) config[clau] = valor;
+        }
+        fitxer.close();
+    }
+    else throw runtime_error("No s'ha pogut obrir l'arxiu de configuracio");
+    
+    return config;
+}
 
 int main() {
-    string servidor = "ubiwan.epsevg.upc.edu:3306", usuari = "inep06", contrasenya = "ahp8Oa4ohxaeyu", bbdd = "inep06";
+
+    map<string, string> config = llegirConfig("config.txt");
 
     try {
         // Crear instancia de ConnexioBD
-        ConnexioBD connexio(servidor, usuari, bbdd, contrasenya);
+        ConnexioBD connexio(config["servidor"], config["usuari"], config["bbdd"], config["contrasenya"]);
 
         int opcio;
         do {

@@ -1,32 +1,26 @@
 #pragma once
+
 #include <cppconn/driver.h>
-#include <cppconn/exception.h>
 #include <cppconn/statement.h>
-#include <cppconn/prepared_statement.h>
 #include <cppconn/resultset.h>
-#include <iostream>
-#include <mysql_connection.h>
 #include <mysql_driver.h>
+#include <iostream>
 
-using namespace std; // Esto elimina la necesidad de usar el prefijo `std::`
-using namespace sql; // Esto elimina la necesidad de usar el prefijo `sql::`
-using namespace sql::mysql; // Esto elimina la necesidad de usar el prefijo `sql::mysql`
+using namespace std;
+using namespace sql;
+using namespace sql::mysql;
 
-class ConnexioBD
-{
+class ConnexioBD {
 private:
-	Driver* driver;
-	Connection* con;
+    MySQL_Driver* driver;
+    Connection* con;
 
 public:
-	ConnexioBD(const string& host, const string& user, const string& bbdd, const string& password);
-	~ConnexioBD();
-	ResultSet* executarConsulta(const string& sql);
-	void executarComanda(const string& sql);
+    ConnexioBD(const string& servidor, const string& usuario, const string& password, const string& database);
+    ~ConnexioBD();
 
-	void registrarUsuari();
-	void consultarUsuari();
-	void modificarUsuari();
-	void esborrarUsuari();
+    ResultSet* executarConsulta(const string& sqlQuery);
+    void executarComanda(const string& sqlQuery);
 };
+
 

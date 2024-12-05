@@ -130,13 +130,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CapaDeDomini.cpp" />
+    <ClCompile Include="CapaDePresentacio.cpp" />
+    <ClCompile Include="CercadoraUsuari.cpp" />
     <ClCompile Include="ConnexioBD.cpp" />
     <ClCompile Include="INEP_PROJECT.cpp" />
-    <ClCompile Include="Usuario.cpp" />
+    <ClCompile Include="PassarelaUsuari.cpp" />
+    <ClCompile Include="PetitFlix.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CapaDeDomini.h" />
+    <ClInclude Include="CapaDePresentacio.h" />
+    <ClInclude Include="CercadoraUsuari.h" />
     <ClInclude Include="ConnexioBD.h" />
-    <ClInclude Include="Usuario.h" />
+    <ClInclude Include="PassarelaUsuari.h" />
+    <ClInclude Include="PetitFlix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

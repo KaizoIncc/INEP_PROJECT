@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "ConnexioBD.h"
 #include "config.txt"
 
 using namespace std;

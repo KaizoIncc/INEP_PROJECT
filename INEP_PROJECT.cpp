@@ -7,7 +7,8 @@ int main() {
 		std::locale::global(std::locale("es_ES.UTF-8"));
 
         int opcio;
-		bool sessioIniciada = false;
+		bool usuariRegistrat = false;
+		bool sessioIniciada = false and usuariRegistrat;
 		CapaDePresentacio& presentacio = CapaDePresentacio::getInstance();
 		while (true) {
 			if (!sessioIniciada) {
@@ -26,6 +27,7 @@ int main() {
 						break;
 					case 2:
 						// Registrar usuario presentacio.processarRegistrarUsuari(); 
+						presentacio.processarRegistrarUsuari();
 						break;
 					case 3:
 						// Consultas

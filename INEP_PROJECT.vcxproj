@@ -130,7 +130,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CapaDeDomini.cpp" />
+    <ClCompile Include="CUModificaUsuari.cpp" />
+    <ClCompile Include="DTOUsuari.cpp" />
+    <ClCompile Include="TxIniciSessio.cpp" />
     <ClCompile Include="CapaDePresentacio.cpp" />
     <ClCompile Include="CercadoraUsuari.cpp" />
     <ClCompile Include="ConnexioBD.cpp" />
@@ -140,7 +142,9 @@
     <ClCompile Include="TxRegistrarUsuari.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CapaDeDomini.h" />
+    <ClInclude Include="CUModificaUsuari.h" />
+    <ClInclude Include="DTOUsuari.h" />
+    <ClInclude Include="TxIniciSessio.h" />
     <ClInclude Include="CapaDePresentacio.h" />
     <ClInclude Include="CercadoraUsuari.h" />
     <ClInclude Include="ConnexioBD.h" />

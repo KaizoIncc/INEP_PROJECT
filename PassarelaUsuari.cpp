@@ -80,5 +80,7 @@ void PassarelaUsuari::modifica() {
 }
 
 void PassarelaUsuari::esborra() {
-	
+	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
+	string query = "DELETE FROM usuaris WHERE (sobrenom = '" + nom + "' AND contrasenya = '" + contrasenya + "') ";
+	conn.executarComanda(query);
 }

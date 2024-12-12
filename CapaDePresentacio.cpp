@@ -1,5 +1,7 @@
+#include <cstdlib>
 #include "CapaDePresentacio.h"
 #include "TxRegistrarUsuari.h"
+#include "TxEsborrarUsuari.h"
 
 CapaDePresentacio& CapaDePresentacio::getInstance() {
 	static CapaDePresentacio instance;
@@ -51,4 +53,31 @@ void CapaDePresentacio::processarRegistrarUsuari() {
 	TxRegistrarUsuari usuariRegistrat(nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs);
 
 	usuariRegistrat.executar();
+}
+
+void CapaDePresentacio::processarEsborrarUsuari() {
+	string contrasenya;
+
+	cout << "** Esborrar usuari **\n";
+	cout << "Per confirmar l'esborrat, s'ha d'entrar la contrasenya ...\n";
+	cout << "Contrasenya: ";
+
+	disableEcho();
+	getline(cin, contrasenya);
+	enableEcho();
+
+	TxEsborrarUsuari usuariEliminat(contrasenya);
+	
+	/*if (true) cout << "Usuari esborrat correctament!";
+	else cout << "Contrasenya erronea";*/
+
+	usuariEliminat.executar();
+}
+
+void disableEcho() {
+	system("stty -echo");  // Desactivar la visualización
+}
+
+void enableEcho() {
+	system("stty echo");  // Activar la visualización
 }

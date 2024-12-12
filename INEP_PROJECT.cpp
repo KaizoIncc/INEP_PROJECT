@@ -67,6 +67,7 @@ int main() {
 					break;
 				case 3:
 					// Borrar usuario
+					presentacio.processarEsborrarUsuari();
 					break;
 				case 4:
 					break;

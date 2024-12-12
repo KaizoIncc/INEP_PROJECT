@@ -137,6 +137,7 @@
     <ClCompile Include="INEP_PROJECT.cpp" />
     <ClCompile Include="PassarelaUsuari.cpp" />
     <ClCompile Include="PetitFlix.cpp" />
+    <ClCompile Include="TxEsborrarUsuari.cpp" />
     <ClCompile Include="TxRegistrarUsuari.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="ConnexioBD.h" />
     <ClInclude Include="PassarelaUsuari.h" />
     <ClInclude Include="PetitFlix.h" />
+    <ClInclude Include="TxEsborrarUsuari.h" />
     <ClInclude Include="TxRegistrarUsuari.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

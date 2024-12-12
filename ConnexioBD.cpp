@@ -29,7 +29,7 @@ ConnexioBD::ConnexioBD(const string& cadenaConexion) {
     con = driver->connect(servidor, usuario, password);
     con->setSchema(database);
 
-    cout << "Conexión establecida con éxito." << endl;
+    //cout << "Conexión establecida con éxito." << endl;
 }
 
 // Destructor privado

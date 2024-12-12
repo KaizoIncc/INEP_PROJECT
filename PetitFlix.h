@@ -19,5 +19,6 @@ public:
 
 	void tancarSessio();
 	
+	void refrescarPantalla(string nomU, string contrasenyaU, string correuElectronicU, string dataNaixamentU, string modalitatU);
 };
 

@@ -76,7 +76,9 @@ void PassarelaUsuari::insereix() {
 }
 
 void PassarelaUsuari::modifica() {
-	
+	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
+	string query = "UPDATE usuari SET nom = '" + nom + "', contrasenya = '" + contrasenya + "', correu_electronic = '" + correuElectronic + "', data_naixement = '" + dataNaixement + "', subscripcio = '" + subscripcio + "';";
+	conn.executarComanda(query);
 }
 
 void PassarelaUsuari::esborra() {

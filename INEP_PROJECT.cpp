@@ -1,7 +1,9 @@
 #include "CapaDePresentacio.h"
 #include <locale>
+#include <thread>
 
 using namespace std;
+using namespace this_thread;
 int main() {
 
 		std::locale::global(std::locale("es_ES.UTF-8"));
@@ -27,7 +29,7 @@ int main() {
 						break;
 					case 2:
 						// Registrar usuario presentacio.processarRegistrarUsuari(); 
-						presentacio.processarRegistrarUsuari();
+						//presentacio.processarRegistrarUsuari();
 						break;
 					case 3:
 						// Consultas
@@ -38,7 +40,9 @@ int main() {
 						wcout << "Selecciona una opció valida amb les tecles de l'1 al 4" << endl;
 					}
 				}
-			}
+			}			
+			sleep_for(chrono::seconds(1));
+			system("CLS");
 			wcout << "*********************" << endl << "    Menu Principal" << endl << "*********************" << endl;
 			wcout << "1. Gestió usuaris" << endl;
 			wcout << "2. Visualitzar" << endl;
@@ -63,7 +67,7 @@ int main() {
 					// Consulta usuario
 					break;
 				case 2:
-					// Modifica usuario
+					// presentacio.processarModificarUsuari();
 					break;
 				case 3:
 					// Borrar usuario

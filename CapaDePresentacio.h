@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
-#include "CapaDeDomini.h"
+#include <regex>
+#include "TxIniciSessio.h"
+#include "CUModificaUsuari.h"
 
 using namespace std;
 
@@ -10,6 +12,8 @@ private:
 	CapaDePresentacio() {};
 
 	~CapaDePresentacio();
+
+	bool comprovarCorreu(string correu);
 
 public:
 

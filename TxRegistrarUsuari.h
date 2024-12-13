@@ -17,7 +17,6 @@ public:
 
 private:
     // Métodos privados
-    bool esModalitatValida(const string& modalitatSubs);
 
     // Atributos
     string nom;

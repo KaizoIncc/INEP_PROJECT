@@ -66,14 +66,18 @@ void PassarelaUsuari::setSubscripcio(string subscripcioU) {
 	subscripcio = subscripcioU;
 }
 
-//Operacions sobre la BD
 void PassarelaUsuari::insereix() {
 	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
-	string query = "INSERT INTO usuaris (nom, sobrenom, contrasenya, correu_electronic, data_naixement, modalitat_subs) "
-		"VALUES ('" + nom + "', '" + sobrenom + "', '" + contrasenya + "', '" + correuElectronic + "', '" +
+
+	// Crear consulta SQL
+	string query = "INSERT INTO usuari (sobrenom, nom, contrasenya, correu_electronic, data_naixement, subscripcio) "
+		"VALUES ('" + sobrenom + "', '" + nom + "', '" + contrasenya + "', '" + correuElectronic + "', '" +
 		dataNaixement + "', '" + subscripcio + "')";
+
+	// Executar comanda
 	conn.executarComanda(query);
 }
+
 
 void PassarelaUsuari::modifica() {
 	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);

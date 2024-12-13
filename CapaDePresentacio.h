@@ -13,6 +13,9 @@ private:
 
 	~CapaDePresentacio();
 
+	bool esDataValida(const string& dataNaixement);
+
+	bool esModalitatValida(const string& modalitatSubs);
 	bool comprovarCorreu(string correu);
 
 public:
@@ -29,6 +32,7 @@ public:
 
 	void processarModificarUsuari();
 
+	void processarEsborrarUsuari(); 
 	bool processarEsborrarUsuari();
 
 };

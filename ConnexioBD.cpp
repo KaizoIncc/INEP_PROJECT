@@ -55,15 +55,35 @@ ConnexioBD& ConnexioBD::getInstance(const string& cadenaConexion) {
 
 // Ejecutar una consulta SQL y devolver un ResultSet
 ResultSet* ConnexioBD::executarConsulta(const string& consultaSQL) {
-    Statement* stmt = con->createStatement();
-    ResultSet* res = stmt->executeQuery(consultaSQL);
-    delete stmt; // Liberar el statement después de usarlo
-    return res;
+    try {
+        Statement* stmt = con->createStatement();
+        
+        ResultSet* res = stmt->executeQuery(consultaSQL); 
+
+        delete stmt;
+        
+        return res;
+    }
+    catch (const sql::SQLException& e) {
+        cerr << "SQL Exception: " << e.what() << endl;
+        cerr << "Error Code: " << e.getErrorCode() << endl;
+        cerr << "SQL State: " << e.getSQLState() << endl;
+        throw; // Re-llança l'excepció després de registrar-la
+    }
 }
 
-// Ejecutar un comando SQL (INSERT, UPDATE, DELETE, etc.)
 void ConnexioBD::executarComanda(const string& comandaSQL) {
-    Statement* stmt = con->createStatement();
-    stmt->execute(comandaSQL);
-    delete stmt; // Liberar el statement después de usarlo
+    try {
+        Statement* stmt = con->createStatement();
+        
+        stmt->execute(comandaSQL);
+        
+        delete stmt; 
+    }
+    catch (const sql::SQLException& e) {
+        cerr << "Error SQL: " << e.what() << endl;
+        cerr << "Codi SQLState: " << e.getSQLState() << endl;
+        cerr << "Codi d'error: " << e.getErrorCode() << endl;
+        throw; // Propaga l'excepció per a la seva gestió posterior
+    }
 }

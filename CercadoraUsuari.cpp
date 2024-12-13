@@ -26,19 +26,56 @@ PassarelaUsuari CercadoraUsuari::cercaPerSobrenom(string sobrenomU) {
 }
 
 bool CercadoraUsuari::existeixSobrenom(const string& sobrenom) {
-	string query = "SELECT COUNT(*) FROM usuaris WHERE sobrenom = '" + sobrenom + "'";
+	string query = "SELECT COUNT(*) FROM usuari WHERE sobrenom = '" + sobrenom + "'";
+	cout << "DEBUG: Executant consulta: " << query << endl;
+
 	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
 	ResultSet* res = conn.executarConsulta(query);
-	// Si troba una fila, activa excepció
-	if (res->next()) return true;
-	else return false;
+
+	if (res->next()) { // Asegura que hi ha resultats
+		int count = res->getInt(1); // Llegeix el primer camp (el COUNT)
+		cout << "DEBUG: Resultat del COUNT: " << count << endl;
+		delete res; // Assegura que el `ResultSet` es neteja
+		return count > 0; // Retorna true si count > 0
+	}
+	else {
+		cout << "DEBUG: No hi ha resultats en el ResultSet." << endl;
+		delete res;
+		return false; // No hi ha cap fila retornada
+	}
 }
 
 bool CercadoraUsuari::existeixCorreu(const string& correu) {
-	string query = "SELECT COUNT(*) FROM usuaris WHERE correu = '" + correu + "'";
-	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
-	ResultSet* res = conn.executarConsulta(query);
-	// Si troba una fila, activa excepció
-	if (res->next()) return true;
-	else return false;
+	string query = "SELECT COUNT(*) FROM usuari WHERE correu_electronic = '" + correu + "'";
+	cout << "DEBUG: Executant consulta: " << query << endl;
+
+	try {
+		ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
+		ResultSet* res = conn.executarConsulta(query);
+
+		if (res == nullptr) {
+			cout << "DEBUG: El ResultSet és nul." << endl;
+			throw runtime_error("Error al recuperar el ResultSet.");
+		}
+
+		if (res->next()) { // Si hi ha resultats
+			int count = res->getInt(1); // Llegeix el primer camp (el COUNT)
+			cout << "DEBUG: Resultat del COUNT: " << count << endl;
+			delete res; // Allibera el ResultSet
+			return count > 0; // Retorna true si el compte és més gran que 0
+		}
+		else {
+			cout << "DEBUG: No hi ha cap fila en el ResultSet." << endl;
+			delete res; // Allibera el ResultSet
+			return false; // Cap resultat
+		}
+	}
+	catch (const sql::SQLException& e) {
+		cerr << "Error SQL: " << e.what() << endl;
+		throw runtime_error("Error al executar la consulta SQL.");
+	}
+	catch (const runtime_error& e) {
+		cerr << "Error: " << e.what() << endl;
+		throw; // Propaga l'excepció
+	}
 }

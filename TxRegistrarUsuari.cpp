@@ -23,21 +23,10 @@ void TxRegistrarUsuari::executar() {
         throw runtime_error("Ja existeix un usuari amb aquest correu electrònic...");
     }
 
-    // Validar modalidad
-    if (!esModalitatValida(modalitatSubs)) {
-        throw runtime_error("Modalitat no existeix.");
-    }
-
     // Crear el usuario
-    PassarelaUsuari usuari(nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs);
+    PassarelaUsuari usuari(sobrenom, nom, contrasenya, correuElectronic, dataNaixement, modalitatSubs);
 
     // Insertar el usuario en la base de datos
     usuari.insereix();
 }
 
-// Método privado para validar la modalidad
-bool TxRegistrarUsuari::esModalitatValida(const string& modalitatSubs) {
-    // Validar modalidad según la lógica de negocio (aquí simplemente es un ejemplo)
-    const vector<string> modalitatsValides = { "BASICA", "PREMIUM", "VIP" };
-    return find(modalitatsValides.begin(), modalitatsValides.end(), modalitatSubs) != modalitatsValides.end();
-}

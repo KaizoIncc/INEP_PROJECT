@@ -13,15 +13,13 @@ private:
 
 	~CapaDePresentacio();
 
-	bool esDataValida(const string& dataNaixement);
-
-	bool esModalitatValida(const string& modalitatSubs);
+	bool esDataValida(const string& dataNaixement);	
 	
 	bool comprovarCorreu(string correu);
 
 public:
 
-	static CapaDePresentacio& getInstance();	
+	static CapaDePresentacio& getInstance();
 
 	bool processarIniciarSessio();
 

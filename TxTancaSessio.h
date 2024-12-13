@@ -1,9 +1,6 @@
 #pragma once
 #include <iostream>
-#include "CercadoraUsuari.h"
 #include "PetitFlix.h"
-
-using namespace std;
 
 class TxTancaSessio {
 private:
@@ -18,5 +15,5 @@ public:
 
 	void executar();
 
-	bool obteResultat() const;
+	bool obteResultat();
 };

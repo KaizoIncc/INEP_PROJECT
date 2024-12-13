@@ -1,21 +1,24 @@
 #pragma once
-#include <string>
-#include "CercadoraUsuari.h"
 #include "PassarelaUsuari.h"
+#include "PetitFlix.h"
 
-using namespace std;
 
 class TxEsborrarUsuari {
 public:
-    // Constructor
+    // ructor
     TxEsborrarUsuari(string contrasenya);
+
+    ~TxEsborrarUsuari();
 
     // Método para ejecutar el registro
     void executar();
+
+    bool obteResultat();
 
 private:
     // Métodos privados
 
     // Atributos
-    string contrasenya;
+    string contrasenyaU;
+    bool result;
 };

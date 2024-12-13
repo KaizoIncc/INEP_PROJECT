@@ -18,7 +18,7 @@ private:
     MySQL_Driver* driver;
     Connection* con;
 
-    // Constructor privado
+    // ructor privado
     ConnexioBD(const string& cadenaConexion);
 
     // Destructor privado

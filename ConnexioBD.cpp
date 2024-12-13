@@ -29,7 +29,7 @@ ConnexioBD::ConnexioBD(const string& cadenaConexion) {
     con = driver->connect(servidor, usuario, password);
     con->setSchema(database);
 
-    //cout << "Conexión establecida con éxito." << endl;
+    //cout << "Conexión establecida con éxito." << "\n";
 }
 
 // Destructor privado
@@ -37,7 +37,7 @@ ConnexioBD::~ConnexioBD() {
     if (con) {
         con->close();
         delete con;
-        cout << "Conexión cerrada con éxito." << endl;
+        cout << "Conexión cerrada con éxito." << "\n";
     }
 }
 
@@ -65,25 +65,26 @@ ResultSet* ConnexioBD::executarConsulta(const string& consultaSQL) {
         return res;
     }
     catch (const sql::SQLException& e) {
-        cerr << "SQL Exception: " << e.what() << endl;
-        cerr << "Error Code: " << e.getErrorCode() << endl;
-        cerr << "SQL State: " << e.getSQLState() << endl;
+        cerr << "SQL Exception: " << e.what() << "\n";
+        cerr << "Error Code: " << e.getErrorCode() << "\n";
+        cerr << "SQL State: " << e.getSQLState() << "\n";
         throw; // Re-llança l'excepció després de registrar-la
     }
 }
 
+// Ejecutar un comando SQL (INSERT, UPDATE, DELETE, etc.)
 void ConnexioBD::executarComanda(const string& comandaSQL) {
     try {
         Statement* stmt = con->createStatement();
         
         stmt->execute(comandaSQL);
         
-        delete stmt; 
+        delete stmt; // Liberar el statement después de usarlo
     }
     catch (const sql::SQLException& e) {
-        cerr << "Error SQL: " << e.what() << endl;
-        cerr << "Codi SQLState: " << e.getSQLState() << endl;
-        cerr << "Codi d'error: " << e.getErrorCode() << endl;
+        cerr << "Error SQL: " << e.what() << "\n";
+        cerr << "Codi SQLState: " << e.getSQLState() << "\n";
+        cerr << "Codi d'error: " << e.getErrorCode() << "\n";
         throw; // Propaga l'excepció per a la seva gestió posterior
     }
 }

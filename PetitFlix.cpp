@@ -1,6 +1,6 @@
 #include "PetitFlix.h"
 
-PetitFlix& PetitFlix::getInstance() {
+PetitFlix PetitFlix::getInstance() {
 	static PetitFlix instance;
 	return instance;
 }
@@ -14,8 +14,7 @@ void PetitFlix::iniciarSessio(PassarelaUsuari userP) {
 }
 
 void PetitFlix::tancarSessio() {
-	PassarelaUsuari null;
-	usuari = null;
+
 }
 
 void PetitFlix::refrescarPantalla(string nomU, string contrasenyaU, string correuElectronicU, string dataNaixamentU, string modalitatU) {

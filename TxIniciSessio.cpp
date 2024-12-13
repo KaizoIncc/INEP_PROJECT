@@ -15,11 +15,11 @@ void TxIniciSessio::executar() {
 	PassarelaUsuari userP = userC.cercaPerSobrenom(sobrenom);
 	if (userP.getContrasenya() == contrasenya) {
 		sessioIniciada = true;
-		PetitFlix& petitflix = PetitFlix::getInstance();
+		PetitFlix petitflix = PetitFlix::getInstance();
 		petitflix.iniciarSessio(userP);		
 	} else throw exception ("Usuari o contrasenya incorrecta");
 }
 
-bool TxIniciSessio::obteResultat() const {
+bool TxIniciSessio::obteResultat()  {
 	return sessioIniciada;
 }

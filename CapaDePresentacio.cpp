@@ -25,7 +25,7 @@ bool CapaDePresentacio::processarIniciarSessio() {
 	string sobrenomU, contrasenyaU;
 	bool sessio = false;
 	system("CLS");
-	cout << "** Iniciar sessio **" << endl;
+	cout << "** Iniciar sessio **" << "\n";
 	cout << "Sobrenom: ";
 	cin >> sobrenomU;
 	cout << "Contrasenya: ";
@@ -34,74 +34,94 @@ bool CapaDePresentacio::processarIniciarSessio() {
 	try {
 		iniSessio.executar();		
 	}
-	catch (const exception& e) {
-		cout << "Usuari o contrasenya incorrecta" << endl;
+	catch (...) {
+		cout << "Usuari o contrasenya incorrecta" << "\n";
 	}
-	if (iniSessio.obteResultat()) cout << "Sessio iniciada correctament!" << endl;
+	if (iniSessio.obteResultat()) cout << "Sessio iniciada correctament!" << "\n";
 	return iniSessio.obteResultat();
 }
 
 bool CapaDePresentacio::processarTancarSessio() {
 	string resposta;
-	cout << "Vols tancar la sessio? (S/N)";
+	system("CLS");
+	cout << "** Tancar sessio **" << "\n";
+	cout << "Vols tancar la sessio? (S/N) ";
 	cin >> resposta;
-	if (resposta == "S" || resposta == "s") {
-		TxTancaSessio tancaSessio;
-		try {
-			tancaSessio.executar();
-		}
-		catch (const exception& e) {
-			cout << "La sessio no s ha pogut tancar" << endl;
-		}
-		return tancaSessio.obteResultat();
+	TxTancaSessio tancaSessio;
+	if (resposta == "S" || resposta == "s") {		
+		tancaSessio.executar();
+		cout << "Sessio tancada correctament!" << "\n";
 	}
+	else if (resposta == "N") {
+		cout << "\n";
+		return true;
+	}
+	else {
+		cout << "Has de contestar amb S o N!" << "\n";
+	}
+	return tancaSessio.obteResultat();
 }
 
 void CapaDePresentacio::processarRegistrarUsuari() {
 	string nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs;
-
-    cout << "Introdueix el nom de l'usuari: ";
-    cin.ignore();
+	int opcio;
+	cin.ignore();
+	system("CLS");
+	cout << "** Registrar usuari **" << "\n";
+	cout << "Nom complet: ";
     getline(cin, nom);
-
-    cout << "Introdueix el sobrenom de l'usuari: ";
+	cout << "Sobrenom: ";
     getline(cin, sobrenom);
-
-    cout << "Introdueix la contrasenya: ";
+	cout << "Contrasenya: ";
     getline(cin, contrasenya);
-
-    cout << "Introdueix el correu electronic: ";
+	cout << "Correu electronic: ";
     getline(cin, correuElectronic);
-
+	if (!comprovarCorreu(correuElectronic)) {
+		cout << "Error: Correu no valid." << "\n\n";
+		return;
+	}
     // Validar fecha de nacimiento
     while (true) {
-        cout << "Introdueix la data de naixement (YYYY-MM-DD): ";
+        cout << "Data de naixement (YYYY-MM-DD): ";
         getline(cin, dataNaixement);
 
         if (esDataValida(dataNaixement)) {
             break; // Salir del bucle si la fecha es válida
         }
         else {
-            cout << "La data introduïda no és vàlida. Torna-ho a intentar." << endl;
+            cout << "La data introduïda no és vàlida. Torna-ho a intentar." << "\n";
         }
     }
 
-    // Validar modalitat
-    while (true) {
-        cout << "Introdueix la modalitat de subscripcio (Cinefil, Infantil, Completa): ";
-        getline(cin, modalitatSubs);
-
-        if (esModalitatValida(modalitatSubs)) {
-            break; // Si la modalitat és vàlida, sortir del bucle
-        }
-        else {
-            cout << "Modalitat no vàlida. Torna-ho a intentar." << endl;
-        }
-    }
-
+	cout << "Modalitats de subscripció disponibles" << "\n";
+	cout << " > 1. Completa" << "\n";
+	cout << " > 2. Cinefil" << "\n";
+	cout << " > 3. Infantil" << "\n";
+	cout << "Escull modalitat: ";
+	cin >> opcio;
+	switch (opcio) {
+	case 1:
+		modalitatSubs = "Completa";
+		break;
+	case 2:
+		modalitatSubs = "Cinefil";
+		break;
+	case 3:
+		modalitatSubs = "Infantil";
+		break;
+	default:
+		cout << "Modalitat no existeix" << "\n";
+		break;
+	}
     TxRegistrarUsuari usuariRegistrat(nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs);
-
-    usuariRegistrat.executar();
+	try {
+		usuariRegistrat.executar();
+	}
+	catch (exception e) {
+		cout << "Error: " << e.what() << "\n" << "\n";
+		return;
+	}
+	cout << "Nou usuari registrat correctament!" << "\n" << "\n";
 }
 
 bool CapaDePresentacio::esDataValida(const string& dataNaixement) {
@@ -149,61 +169,40 @@ bool CapaDePresentacio::esDataValida(const string& dataNaixement) {
 	return true; // La fecha es válida
 }
 
-// Método privado para validar la modalidad
-bool CapaDePresentacio::esModalitatValida(const string& modalitatSubs) {
-    // Validar modalidad según la lógica de negocio (aquí simplemente es un ejemplo)
-    const vector<string> modalitatsValides = { "Cinefil", "Infantil", "Completa" };
-    return find(modalitatsValides.begin(), modalitatsValides.end(), modalitatSubs) != modalitatsValides.end();
-}
-
 bool CapaDePresentacio::processarEsborrarUsuari() {
 	string contrasenya;
 	bool sessio = true;
 	system("CLS");
-	wcout << "** Esborrar usuari **\n";
-	wcout << "Per confirmar l'esborrat, s'ha d'entrar la contrasenya ...\n";
+	wcout << "** Esborrar usuari **" << "\n";
+	wcout << "Per confirmar l'esborrat, s'ha d'entrar la contrasenya ..." << "\n";
 	wcout << "Contrasenya: ";
-
 	cin>> contrasenya;
 
-	TxEsborrarUsuari usuariEliminat(contrasenya);
-	TxTancaSessio tancaSessio;
+	TxEsborrarUsuari usuariEliminat(contrasenya);	
 	try {
 		usuariEliminat.executar();
-		cout << "Usuari esborrat correctament!\n";
-		tancaSessio.executar();
-		sessio = tancaSessio.obteResultat();
+		cout << "Usuari esborrat correctament!" << "\n";				
 	}
 	catch(const exception& e) {
-		cout << "L'usuari no s'esborrat correctament!" << endl;
-
+		cout << e.what() << "\n";
 	}
 
-	return sessio; 
+	return usuariEliminat.obteResultat();
 }
-
-void disableEcho() {
-	system("stty -echo");  // Desactivar la visualización
-}
-
-void enableEcho() {
-	system("stty echo");  // Activar la visualización
-}
-
 
 /*void CapaDePresentacio::processarModificarUsuari() {
 	system("CLS");
 	string input;
-	cout << "** Modifica usuari **" << endl;
+	cout << "** Modifica usuari **" << "\n";
 	CUModificaUsuari cuModificaUsuari;
 	DTOUsuari usuari = cuModificaUsuari.consultaUsuari();
-	cout << "Nom complet: " << usuari.getNom() << endl;
-	cout << "Sobrenom: " << usuari.getSobrenom() << endl;
-	cout << "Correu electronic " << usuari.getCorreuE() << endl;
-	cout << "Data naixement (DD/MM/AAAA): " << usuari.getDataN() << endl;
-	cout << "Modalitat subscripció: " << usuari.getSubscripcio() << endl;
-	cout << "*********************************************" << endl;
-	cout << "Omplir la informacio que es vol modificar ..." << endl;
+	cout << "Nom complet: " << usuari.getNom() << "\n";
+	cout << "Sobrenom: " << usuari.getSobrenom() << "\n";
+	cout << "Correu electronic " << usuari.getCorreuE() << "\n";
+	cout << "Data naixement (DD/MM/AAAA): " << usuari.getDataN() << "\n";
+	cout << "Modalitat subscripció: " << usuari.getSubscripcio() << "\n";
+	cout << "*********************************************" << "\n";
+	cout << "Omplir la informacio que es vol modificar ..." << "\n";
 	cout << "Nom complet: ";
 	cin >> input;
 	if (input.size() != 0) usuari.getNom() = input;
@@ -223,16 +222,16 @@ void enableEcho() {
 	try
 	{
 		cuModificaUsuari.modificarUsuari(usuari.getNom(), usuari.getContrasenya(), usuari.getCorreuE(), usuari.getDataN(), usuari.getSubscripcio();
-		cout << "** Dades usuari modificades **" << endl;
+		cout << "** Dades usuari modificades **" << "\n";
 		usuari = cuModificaUsuari.consultaUsuari();
-		cout << "Nom complet: " << usuari.getNom() << endl;
-		cout << "Sobrenom: " << usuari.getSobrenom() << endl;
-		cout << "Correu electronic :" << usuari.getCorreuE() << endl;
-		cout << "Data naixement (DD/MM/AAAA): " << usuari.getDataN() << endl;
-		cout << "Modalitat subscripcio: " << usuari.getSubscripcio() << endl;
+		cout << "Nom complet: " << usuari.getNom() << "\n";
+		cout << "Sobrenom: " << usuari.getSobrenom() << "\n";
+		cout << "Correu electronic :" << usuari.getCorreuE() << "\n";
+		cout << "Data naixement (DD/MM/AAAA): " << usuari.getDataN() << "\n";
+		cout << "Modalitat subscripcio: " << usuari.getSubscripcio() << "\n";
 	}
-	catch (const std::exception& e)
+	catch ( std::exception e)
 	{
-		cout << "Error: " << e.what() << endl;
+		cout << "Error: " << e.what() << "\n";
 	}
 }*/

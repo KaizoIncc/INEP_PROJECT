@@ -15,7 +15,5 @@ public:
 
 	PassarelaUsuari cercaPerSobrenom(string sobrenom);
 
-	bool existeixSobrenom(const string& sobrenom);
-	bool existeixCorreu(const string& correu);
 };
 

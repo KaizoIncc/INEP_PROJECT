@@ -1,0 +1,102 @@
+[33mcommit e26bd6083042de45173c6bedb7dec323a61ff129[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: massimo <massimo.wang@estudiantat.upc.edu>
+Date:   Wed Dec 11 18:35:51 2024 +0100
+
+    creacion modificar usuario, DTOUsuari, TxIniciarSesion y eliminacion de capa de dominio
+
+[33mcommit 9fe6f6e0e55f32f4447f02fa0316583ec27e0976[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Sat Dec 7 01:55:11 2024 +0100
+
+    Registrar usuari implementado (sin probarlo)
+
+[33mcommit 82fa4c3556a154855131181f8203bf11cc574877[m
+Author: massimo <massimo.wang@estudiantat.upc.edu>
+Date:   Thu Dec 5 08:51:59 2024 +0100
+
+    clase capa de presentacion, dominio, petitflix, main, caso de uso iniciar sesion, base de datos, pasarela y cercadora usuario, conexioBD pasado a singleton hechos y config.txt cambiado y subido
+
+[33mcommit 9cb5aa85e101d9cb4d07e38c4bda1597e700926a[m
+Author: massimo <massimo.wang@estudiantat.upc.edu>
+Date:   Tue Nov 12 20:57:04 2024 +0100
+
+    adaptaciones usuario y conexioBD
+
+[33mcommit 5e99037c92b0217091c55b45391e6b7a65d03783[m
+Merge: 4b2ce04 a27d281
+Author: massimo <massimo.wang@estudiantat.upc.edu>
+Date:   Tue Nov 12 20:18:06 2024 +0100
+
+    merge update
+
+[33mcommit 4b2ce04b6ba76800870927ec89c160c76e84c2c7[m
+Author: massimo <massimo.wang@estudiantat.upc.edu>
+Date:   Tue Nov 12 20:15:55 2024 +0100
+
+    distribuido
+
+[33mcommit a27d2818016a3b7d3685f1fd78ec6003b402a05c[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Tue Nov 12 19:59:31 2024 +0100
+
+    Entrega terminada
+
+[33mcommit 7f0413a7e9c0c175662434af3be591c2bd71dfa2[m
+Merge: 2eefcc4 bb0850a
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Tue Nov 12 17:34:32 2024 +0100
+
+    arreglado el error de conexion a la base de datos
+
+[33mcommit 2eefcc4f9e3216a4c071ed8e513f67bacab42c0c[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Tue Nov 12 17:28:57 2024 +0100
+
+    arreglado el error de conexion a la base de datos
+
+[33mcommit bb0850aec1ddbd86c9014314c3510d18d805ee0b[m
+Author: Squar <151529246+Squar21@users.noreply.github.com>
+Date:   Mon Nov 11 19:37:26 2024 +0100
+
+    Update INEP_PROJECT.cpp
+    
+    quitar la inicialización
+
+[33mcommit 60fcda1aeddd62853bbf784c0a16ec9e51137f04[m
+Author: Squar <151529246+Squar21@users.noreply.github.com>
+Date:   Mon Nov 11 18:46:00 2024 +0100
+
+    Update INEP_PROJECT.cpp
+    
+    valors a la crida
+    ConnexioBD connexio(servidor, usuari, contrasenya, bbdd);
+
+[33mcommit 90ab0296c5825ec1981337a1d9737ab3da3fbc61[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Sun Nov 10 18:59:03 2024 +0100
+
+    Tasca 7 hecha (la conexion no funciona por alguna razon)
+
+[33mcommit d78a632cf6220cdeb333a0f641fbab45ecf3c65b[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Wed Nov 6 14:45:53 2024 +0100
+
+    Tasca 6/ version previa
+
+[33mcommit 9779fe4545d94a66ae6a28bd8ef80fe4e23d30a6[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Wed Nov 6 14:11:26 2024 +0100
+
+    conexión a base de datos
+
+[33mcommit cfed6901c45b05b850f703592e3965c5216ee9a8[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Fri Sep 20 12:33:45 2024 +0200
+
+    Agregar archivos de proyecto.
+
+[33mcommit a33009acc4d0532abc251953a954c650d75a0905[m
+Author: KaizoIncc <kaizoinc22@gmail.com>
+Date:   Fri Sep 20 12:33:43 2024 +0200
+
+    Agregar .gitattributes y .gitignore.

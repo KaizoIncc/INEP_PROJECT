@@ -19,6 +19,6 @@ public:
 
 	void executar();
 
-	bool obteResultat() const;
+	bool obteResultat() ;
 };
 

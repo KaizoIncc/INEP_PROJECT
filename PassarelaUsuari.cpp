@@ -16,7 +16,6 @@ PassarelaUsuari::PassarelaUsuari() {
 }
 
 //Destructora
-
 PassarelaUsuari::~PassarelaUsuari() {
 
 }
@@ -68,12 +67,10 @@ void PassarelaUsuari::setSubscripcio(string subscripcioU) {
 
 void PassarelaUsuari::insereix() {
 	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
-
 	// Crear consulta SQL
 	string query = "INSERT INTO usuari (sobrenom, nom, contrasenya, correu_electronic, data_naixement, subscripcio) "
 		"VALUES ('" + sobrenom + "', '" + nom + "', '" + contrasenya + "', '" + correuElectronic + "', '" +
 		dataNaixement + "', '" + subscripcio + "')";
-
 	// Executar comanda
 	conn.executarComanda(query);
 }

@@ -11,7 +11,7 @@ private:
 
 public:
 
-	static PetitFlix& getInstance();
+	static PetitFlix getInstance();
 
 	PassarelaUsuari getUsuari();
 

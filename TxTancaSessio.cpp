@@ -1,22 +1,20 @@
 #include "TxTancaSessio.h"
 
 
-TxTancaSessio::TxTancaSessio()
-{
+TxTancaSessio::TxTancaSessio() {
 	sessioIniciada = true;
 }
 
-TxTancaSessio::~TxTancaSessio()
-{
+TxTancaSessio::~TxTancaSessio() {
+
 }
 
-void TxTancaSessio::executar()
-{
-	PetitFlix& petitflix = PetitFlix::getInstance();
+void TxTancaSessio::executar() {
+	PetitFlix petitflix = PetitFlix::getInstance();
 	petitflix.tancarSessio();
 	sessioIniciada = false;
 }
 
-bool TxTancaSessio::obteResultat() const {
+bool TxTancaSessio::obteResultat() {
 	return sessioIniciada;
 }

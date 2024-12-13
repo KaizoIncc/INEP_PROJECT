@@ -2,14 +2,13 @@
 #include "PetitFlix.h"
 #include <stdexcept>
 
-#include <stdexcept>
-
 // Constructor
-TxEsborrarUsuari::TxEsborrarUsuari(const string contrasenya) : contrasenya(contrasenya){}
+TxEsborrarUsuari::TxEsborrarUsuari(string contrasenya) {
+    this->contrasenya = contrasenya;
+}
 
 // Método para ejecutar el registro
 void TxEsborrarUsuari::executar() {
-    CercadoraUsuari cercadora;
     string contrasenyaU;
 
     PetitFlix& flix = PetitFlix::getInstance();
@@ -17,6 +16,8 @@ void TxEsborrarUsuari::executar() {
     PassarelaUsuari usuari = flix.getUsuari();
 
     contrasenyaU = usuari.getContrasenya();
+    cout << contrasenyaU << endl;
+    cout << contrasenya << endl;
 
     if (contrasenyaU == contrasenya) {
         usuari.esborra();

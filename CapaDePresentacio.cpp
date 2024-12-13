@@ -38,6 +38,10 @@ bool CapaDePresentacio::processarIniciarSessio() {
 	return iniSessio.obteResultat();
 }
 
+bool CapaDePresentacio::processarTancarSessio() {
+
+}
+
 /*void CapaDePresentacio::processarRegistrarUsuari() {
 	string nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs;
 
@@ -63,24 +67,30 @@ bool CapaDePresentacio::processarIniciarSessio() {
 
 	usuariRegistrat.executar();
 }
+*/
 
 void CapaDePresentacio::processarEsborrarUsuari() {
 	string contrasenya;
+	system("CLS");
+	wcout << "** Esborrar usuari **\n";
+	wcout << "Per confirmar l'esborrat, s'ha d'entrar la contrasenya ...\n";
+	wcout << "Contrasenya: ";
 
-	cout << "** Esborrar usuari **\n";
-	cout << "Per confirmar l'esborrat, s'ha d'entrar la contrasenya ...\n";
-	cout << "Contrasenya: ";
-
-	disableEcho();
-	getline(cin, contrasenya);
-	enableEcho();
+	cin>> contrasenya;
 
 	TxEsborrarUsuari usuariEliminat(contrasenya);
+	try {
+		usuariEliminat.executar();
+		cout << "Usuari esborrat correctament!\n";
+	}
+	catch(const exception& e) {
+		cout << "Contrasenya incorrecta" << endl;
+	}
 	
-	/*if (true) cout << "Usuari esborrat correctament!";
-	else cout << "Contrasenya erronea";*/
+	//if (true) cout << "Usuari esborrat correctament!";
+	//else cout << "Contrasenya erronea";
 
-	usuariEliminat.executar();
+	
 }
 
 void disableEcho() {
@@ -90,7 +100,7 @@ void disableEcho() {
 void enableEcho() {
 	system("stty echo");  // Activar la visualización
 }
-}*/
+
 
 /*void CapaDePresentacio::processarModificarUsuari() {
 	system("CLS");

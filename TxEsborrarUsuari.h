@@ -8,7 +8,7 @@ using namespace std;
 class TxEsborrarUsuari {
 public:
     // Constructor
-    TxEsborrarUsuari(const string contrasenya);
+    TxEsborrarUsuari(string contrasenya);
 
     // Método para ejecutar el registro
     void executar();

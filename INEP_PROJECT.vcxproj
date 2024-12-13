@@ -141,6 +141,7 @@
     <ClCompile Include="PetitFlix.cpp" />
     <ClCompile Include="TxEsborrarUsuari.cpp" />
     <ClCompile Include="TxRegistrarUsuari.cpp" />
+    <ClCompile Include="TxTancaSessio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CUModificaUsuari.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="PetitFlix.h" />
     <ClInclude Include="TxEsborrarUsuari.h" />
     <ClInclude Include="TxRegistrarUsuari.h" />
+    <ClInclude Include="TxTancaSessio.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,7 @@
 #include "CapaDePresentacio.h"
 #include "TxRegistrarUsuari.h"
 #include "TxEsborrarUsuari.h"
+#include "TxTancaSessio.h"
 
 
 CapaDePresentacio& CapaDePresentacio::getInstance() {
@@ -39,7 +40,19 @@ bool CapaDePresentacio::processarIniciarSessio() {
 }
 
 bool CapaDePresentacio::processarTancarSessio() {
-
+	string resposta;
+	cout << "Vols tancar la sessio? (S/N)";
+	cin >> resposta;
+	if (resposta == "S" || resposta == "s") {
+		TxTancaSessio tancaSessio;
+		try {
+			tancaSessio.executar();
+		}
+		catch (const exception& e) {
+			cout << "La sessio no s ha pogut tancar" << endl;
+		}
+		return tancaSessio.obteResultat();
+	}
 }
 
 /*void CapaDePresentacio::processarRegistrarUsuari() {
@@ -69,8 +82,9 @@ bool CapaDePresentacio::processarTancarSessio() {
 }
 */
 
-void CapaDePresentacio::processarEsborrarUsuari() {
+bool CapaDePresentacio::processarEsborrarUsuari() {
 	string contrasenya;
+	bool sessio = true;
 	system("CLS");
 	wcout << "** Esborrar usuari **\n";
 	wcout << "Per confirmar l'esborrat, s'ha d'entrar la contrasenya ...\n";
@@ -79,18 +93,19 @@ void CapaDePresentacio::processarEsborrarUsuari() {
 	cin>> contrasenya;
 
 	TxEsborrarUsuari usuariEliminat(contrasenya);
+	TxTancaSessio tancaSessio;
 	try {
 		usuariEliminat.executar();
 		cout << "Usuari esborrat correctament!\n";
+		tancaSessio.executar();
+		sessio = tancaSessio.obteResultat();
 	}
 	catch(const exception& e) {
-		cout << "Contrasenya incorrecta" << endl;
-	}
-	
-	//if (true) cout << "Usuari esborrat correctament!";
-	//else cout << "Contrasenya erronea";
+		cout << "L'usuari no s'esborrat correctament!" << endl;
 
-	
+	}
+
+	return sessio; 
 }
 
 void disableEcho() {

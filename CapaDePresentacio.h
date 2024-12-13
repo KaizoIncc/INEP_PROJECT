@@ -29,7 +29,7 @@ public:
 
 	void processarModificarUsuari();
 
-	void processarEsborrarUsuari();
+	bool processarEsborrarUsuari();
 
 };
 

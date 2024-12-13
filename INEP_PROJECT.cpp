@@ -71,10 +71,10 @@ int main() {
 				break;
 			case 3:
 				// Borrar usuario
-				presentacio.processarEsborrarUsuari();
-				sleep_for(chrono::seconds(10));
+				sessioIniciada = presentacio.processarEsborrarUsuari();
 				break;
 			case 4:
+				
 				break;
 			default:
 				wcout << "Selecciona una opció valida amb les tecles de l'1 al 4" << endl;
@@ -134,7 +134,8 @@ int main() {
 			}
 			break;
 		case 4:
-			// Cerrar sesion
+			// Tancar sessió
+			sessioIniciada = presentacio.processarTancarSessio();
 			break;
 		case 5:
 			return 0;

@@ -16,10 +16,13 @@ void TxEsborrarUsuari::executar() {
     PassarelaUsuari usuari = flix.getUsuari();
 
     contrasenyaU = usuari.getContrasenya();
-    cout << contrasenyaU << endl;
-    cout << contrasenya << endl;
 
     if (contrasenyaU == contrasenya) {
         usuari.esborra();
+
+        //tanca sessio
+    }
+    else {
+        cout << "La contrasenya no és correcta, l'usuari no s'esborrat\n";
     }
 }

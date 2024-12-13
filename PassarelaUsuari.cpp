@@ -82,7 +82,6 @@ void PassarelaUsuari::modifica() {
 }
 
 void PassarelaUsuari::esborra() {
-	cout << "etaoy aqui" << endl;
 	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
 	string query = "DELETE FROM usuari WHERE (sobrenom = '" + sobrenom + "')";
 	conn.executarComanda(query);

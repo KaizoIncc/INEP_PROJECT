@@ -29,7 +29,7 @@ int main() {
 					break;
 				case 2:
 					// Registrar usuario presentacio.processarRegistrarUsuari(); 
-					//presentacio.processarRegistrarUsuari();
+					presentacio.processarRegistrarUsuari();
 					break;
 				case 3:
 					// Consultas

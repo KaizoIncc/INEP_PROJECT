@@ -58,8 +58,6 @@ bool CapaDePresentacio::processarTancarSessio() {
 }
 
 void CapaDePresentacio::processarRegistrarUsuari() {
-    string nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs;
-/*void CapaDePresentacio::processarRegistrarUsuari() {
 	string nom, sobrenom, contrasenya, correuElectronic, dataNaixement, modalitatSubs;
 
     cout << "Introdueix el nom de l'usuari: ";
@@ -107,32 +105,48 @@ void CapaDePresentacio::processarRegistrarUsuari() {
 }
 
 bool CapaDePresentacio::esDataValida(const string& dataNaixement) {
-    // Verificar formato con regex
-    regex dataRegex("^\\d{4}-\\d{2}-\\d{2}$");
-    if (!regex_match(dataNaixement, dataRegex)) {
-        return false; // El formato no coincide
-    }
+	// Verificar formato con regex
+	regex dataRegex("^\\d{4}-\\d{2}-\\d{2}$");
+	if (!regex_match(dataNaixement, dataRegex)) {
+		return false; // El formato no coincide
+	}
 
-    // Extraer año, mes y día
-    int any, mes, dia;
-    sscanf(dataNaixement.c_str(), "%d-%d-%d", &any, &mes, &dia);
+	// Extraer año, mes y día
+	int any, mes, dia;
+	sscanf(dataNaixement.c_str(), "%d-%d-%d", &any, &mes, &dia);
 
-    // Obtener la fecha actual
-    time_t t = time(0);
-    tm* avui = localtime(&t);
-    int anyActual = avui->tm_year + 1900;
-    int mesActual = avui->tm_mon + 1;
-    int diaActual = avui->tm_mday;
+	// Validar rango básico de mes y día
+	if (mes < 1 || mes > 12 || dia < 1 || dia > 31) {
+		return false; // Rango inválido
+	}
 
-    // Verificar si la fecha está en el futuro
-    if (any > anyActual ||
-        (any == anyActual && mes > mesActual) ||
-        (any == anyActual && mes == mesActual && dia > diaActual)) {
-        return false; // La fecha es futura
-    }
+	// Crear una estructura tm
+	tm data = {};
+	data.tm_year = any - 1900; // tm_year cuenta desde 1900
+	data.tm_mon = mes - 1;     // tm_mon va de 0 a 11
+	data.tm_mday = dia;
 
-    // Si la fecha es válida y no está en el futuro, es válida
-    return true;
+	// Convertir a tiempo UNIX y verificar si se ajusta
+	time_t t = mktime(&data);
+	if (t == -1) {
+		return false; // Conversión fallida
+	}
+
+	// Verificar si mktime ajustó la fecha
+	if (data.tm_year != any - 1900 || data.tm_mon != mes - 1 || data.tm_mday != dia) {
+		return false; // La fecha no era válida
+	}
+
+	// Obtener la fecha actual
+	time_t tActual = time(0);
+	tm* avui = localtime(&tActual);
+
+	// Verificar si la fecha está en el futuro
+	if (t > tActual) {
+		return false; // La fecha es futura
+	}
+
+	return true; // La fecha es válida
 }
 
 // Método privado para validar la modalidad
@@ -141,9 +155,6 @@ bool CapaDePresentacio::esModalitatValida(const string& modalitatSubs) {
     const vector<string> modalitatsValides = { "Cinefil", "Infantil", "Completa" };
     return find(modalitatsValides.begin(), modalitatsValides.end(), modalitatSubs) != modalitatsValides.end();
 }
-	usuariRegistrat.executar();
-}
-*/
 
 bool CapaDePresentacio::processarEsborrarUsuari() {
 	string contrasenya;

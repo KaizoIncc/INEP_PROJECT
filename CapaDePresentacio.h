@@ -16,6 +16,7 @@ private:
 	bool esDataValida(const string& dataNaixement);
 
 	bool esModalitatValida(const string& modalitatSubs);
+	
 	bool comprovarCorreu(string correu);
 
 public:
@@ -31,8 +32,7 @@ public:
 	void processarConsultarUsuari();
 
 	void processarModificarUsuari();
-
-	void processarEsborrarUsuari(); 
+	
 	bool processarEsborrarUsuari();
 
 };

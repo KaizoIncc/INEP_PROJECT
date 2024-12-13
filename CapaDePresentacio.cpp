@@ -76,7 +76,7 @@ void CapaDePresentacio::processarRegistrarUsuari() {
 	}
     // Validar fecha de nacimiento
     while (true) {
-        cout << "Data de naixement (YYYY-MM-DD): ";
+        cout << "Data de naixement (DD-MM-YYYY): ";
         getline(cin, dataNaixement);
 
         if (esDataValida(dataNaixement)) {
@@ -119,15 +119,15 @@ void CapaDePresentacio::processarRegistrarUsuari() {
 }
 
 bool CapaDePresentacio::esDataValida(const string& dataNaixement) {
-	// Verificar formato con regex
-	regex dataRegex("^\\d{4}-\\d{2}-\\d{2}$");
+	// Verificar formato con regex para DD-MM-YYYY
+	regex dataRegex("^\\d{2}-\\d{2}-\\d{4}$");
 	if (!regex_match(dataNaixement, dataRegex)) {
 		return false; // El formato no coincide
 	}
 
-	// Extraer año, mes y día
-	int any, mes, dia;
-	sscanf(dataNaixement.c_str(), "%d-%d-%d", &any, &mes, &dia);
+	// Extraer día, mes y año
+	int dia, mes, any;
+	sscanf(dataNaixement.c_str(), "%d-%d-%d", &dia, &mes, &any);
 
 	// Validar rango básico de mes y día
 	if (mes < 1 || mes > 12 || dia < 1 || dia > 31) {
@@ -162,6 +162,7 @@ bool CapaDePresentacio::esDataValida(const string& dataNaixement) {
 
 	return true; // La fecha es válida
 }
+
 
 bool CapaDePresentacio::processarEsborrarUsuari() {
 	string contrasenya;
@@ -208,7 +209,7 @@ void CapaDePresentacio::processarConsultarUsuari() {
 }
 
 
-/*void CapaDePresentacio::processarModificarUsuari() {
+/* void CapaDePresentacio::processarModificarUsuari() {
 	system("CLS");
 	string input;
 	cout << "** Modifica usuari **" << "\n";
@@ -252,4 +253,4 @@ void CapaDePresentacio::processarConsultarUsuari() {
 	{
 		cout << "Error: " << e.what() << "\n";
 	}
-}*/
+} */

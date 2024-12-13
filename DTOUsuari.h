@@ -18,13 +18,13 @@ public:
 
 	string getNom();
 
-	string getContrasenya();
-
 	string getCorreuE();
 
 	string getDataN();
 
 	string getSubscripcio();
 
+	// Método para mostrar información (opcional)
+	void mostrarInformacio() const;
 };
 

@@ -1,10 +1,4 @@
-#include <cstdlib>
 #include "CapaDePresentacio.h"
-#include "TxRegistrarUsuari.h"
-#include <regex>
-#include <ctime>
-#include "TxEsborrarUsuari.h"
-#include "TxTancaSessio.h"
 
 
 CapaDePresentacio& CapaDePresentacio::getInstance() {
@@ -189,6 +183,30 @@ bool CapaDePresentacio::processarEsborrarUsuari() {
 
 	return usuariEliminat.obteResultat();
 }
+
+void CapaDePresentacio::processarConsultarUsuari() {
+	// Crear una instancia de la transacción TxConsultaUsuari
+	TxConsultaUsuari consulta;
+
+	// Ejecutar la transacción
+	consulta.executar();
+
+	// Obtener el resultado como un DTOUsuari
+	DTOUsuari resultat = consulta.obteResultat();
+
+	// Mostrar la información del usuario en la consola
+	resultat.mostrarInformacio();
+
+	// Crear una instancia de la transaccion TxInfoVisualitzacions
+	TxInfoVisualitzacions infovisualitzacions;
+
+	// Ejecutar la transacción
+	infovisualitzacions.executar();
+
+	// Mostrar la información en la consola
+	infovisualitzacions.mostrarInformacio();
+}
+
 
 /*void CapaDePresentacio::processarModificarUsuari() {
 	system("CLS");

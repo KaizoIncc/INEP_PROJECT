@@ -1,8 +1,16 @@
 #pragma once
-#include <iostream>
-#include <regex>
+#include "TxRegistrarUsuari.h"
+#include "TxEsborrarUsuari.h"
+#include "TxTancaSessio.h"
+#include "TxConsultaUsuari.h"
 #include "TxIniciSessio.h"
-#include "CUModificaUsuari.h"
+#include "TxInfoVisualitzacions.h"
+#include "DTOUsuari.h"
+#include "PetitFlix.h"
+#include <iostream>
+#include <cstdlib>
+#include <regex>
+#include <ctime>
 
 using namespace std;
 
@@ -29,7 +37,7 @@ public:
 
 	void processarConsultarUsuari();
 
-	void processarModificarUsuari();
+	// void processarModificarUsuari();
 	
 	bool processarEsborrarUsuari();
 

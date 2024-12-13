@@ -130,8 +130,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CercadoraVisualitzaPel.cpp" />
+    <ClCompile Include="CercadoraVisualitzaSerie.cpp" />
     <ClCompile Include="CUModificaUsuari.cpp" />
     <ClCompile Include="DTOUsuari.cpp" />
+    <ClCompile Include="TxConsultaUsuari.cpp" />
+    <ClCompile Include="TxInfoVisualitzacions.cpp" />
     <ClCompile Include="TxIniciSessio.cpp" />
     <ClCompile Include="CapaDePresentacio.cpp" />
     <ClCompile Include="CercadoraUsuari.cpp" />
@@ -144,8 +148,12 @@
     <ClCompile Include="TxTancaSessio.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CercadoraVisualitzaPel.h" />
+    <ClInclude Include="CercadoraVisualitzaSerie.h" />
     <ClInclude Include="CUModificaUsuari.h" />
     <ClInclude Include="DTOUsuari.h" />
+    <ClInclude Include="TxConsultaUsuari.h" />
+    <ClInclude Include="TxInfoVisualitzacions.h" />
     <ClInclude Include="TxIniciSessio.h" />
     <ClInclude Include="CapaDePresentacio.h" />
     <ClInclude Include="CercadoraUsuari.h" />

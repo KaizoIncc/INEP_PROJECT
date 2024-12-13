@@ -44,3 +44,11 @@ string DTOUsuari::getDataN() {
 string DTOUsuari::getSubscripcio() {
 	return subscripcio;
 }
+
+void DTOUsuari::mostrarInformacio() const {
+	cout << "Nom: " << nom << endl;
+	cout << "Sobrenom: " << sobrenom << endl;
+	cout << "Correu Electronic: " << correuElectronic << endl;
+	cout << "Data de naixement: " << dataNaixement << endl;
+	cout << "Modalitat de Suscripcio: " << subscripcio << endl;
+}

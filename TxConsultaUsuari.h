@@ -6,19 +6,22 @@
 
 class TxConsultaUsuari {
 private:
-    DTOUsuari resultat; // Almacena el resultado como un DTOUsuari
-    PassarelaUsuari usuari; // Almacena el usuario como PassarelaUsuari
+
+    DTOUsuari resultat; // Almacena el resultado como un DTOUsuari  
+    PassarelaUsuari usuari;
 
 public:
     // Constructor
     TxConsultaUsuari();
 
+    // Destrcutor
+    ~TxConsultaUsuari();
+
     // Método para ejecutar la transacción
     void executar();
 
     // Obtener el resultado como un DTOUsuari
-    DTOUsuari obteResultat() const;
-
-    // Obtener el usuario actual como PassarelaUsuari
-    PassarelaUsuari obteUsuari() const;
+    DTOUsuari obteResultat();
+    
+    PassarelaUsuari obteUsuari();
 };

@@ -5,11 +5,13 @@
 class CercadoraVisualitzaSerie {
 private:
 
+	int num_visualitzacionsSer;
+
 public:
 
 	CercadoraVisualitzaSerie();
 
 	~CercadoraVisualitzaSerie();
 
-	int cercaVisualitzacions(const string& sobrenom);
+	int cercaVisualitzacions(string sobrenom);
 };

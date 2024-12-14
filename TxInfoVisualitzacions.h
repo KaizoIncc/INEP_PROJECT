@@ -4,15 +4,21 @@
 #include "PetitFlix.h"
 
 class TxInfoVisualitzacions {
-private:
-	int resultat;
-
 public:
 	TxInfoVisualitzacions();
 
+	~TxInfoVisualitzacions();
+
+	struct res {	
+
+		vector<int> visualitzacions;	
+	};
+
 	void executar();
 
-	int obteResultat();
+	res obteResultat();
 
-	void mostrarInformacio();
+private:
+
+	res resultat;
 };

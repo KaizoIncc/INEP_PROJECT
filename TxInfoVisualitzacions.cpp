@@ -1,20 +1,30 @@
 #include "TxInfoVisualitzacions.h"
 
-TxInfoVisualitzacions::TxInfoVisualitzacions() : resultat() {}
+TxInfoVisualitzacions::TxInfoVisualitzacions() {
+
+}
+
+TxInfoVisualitzacions::~TxInfoVisualitzacions() {
+
+}
 
 void TxInfoVisualitzacions::executar() {
-	CercadoraVisualitzaPel visualitzaP;
-	CercadoraVisualitzaSerie visualitzaS;
+	CercadoraVisualitzaPel visualitzaP = CercadoraVisualitzaPel();
+	CercadoraVisualitzaSerie visualitzaS = CercadoraVisualitzaSerie();
+
+	PetitFlix& petitflix = PetitFlix::getInstance();
+	PassarelaUsuari usuari = petitflix.getUsuari();
 
 	string sobrenom = PetitFlix::getInstance().getUsuari().getSobrenom();
 
-	resultat = visualitzaP.cercaVisualitzacions(sobrenom) + visualitzaS.cercaVisualitzacions(sobrenom);
+	int nVisualitzaP = visualitzaP.cercaVisualitzacions(usuari.getSobrenom());
+	resultat.visualitzacions.push_back(nVisualitzaP);
+
+	int nVisualitzaS = visualitzaS.cercaVisualitzacions(usuari.getSobrenom());
+	resultat.visualitzacions.push_back(nVisualitzaS);
+	
 }
 
-int TxInfoVisualitzacions::obteResultat() {
+TxInfoVisualitzacions::res TxInfoVisualitzacions::obteResultat() {
 	return resultat;
-}
-
-void TxInfoVisualitzacions::mostrarInformacio() {
-	cout << "Numero total de visualitzacions: " << this->obteResultat() << endl;
 }

@@ -1,23 +1,33 @@
 #include "TxConsultaUsuari.h"
 
 // Constructor
-TxConsultaUsuari::TxConsultaUsuari() : resultat(), usuari() {}
+TxConsultaUsuari::TxConsultaUsuari() {
+
+}
+
+TxConsultaUsuari::~TxConsultaUsuari() {
+
+}
 
 // Método para ejecutar la transacción
 void TxConsultaUsuari::executar() {
     // Obtener el usuario actual desde PetitFlix
-    usuari = PetitFlix::getInstance().getUsuari();
+    PetitFlix& petitflix = PetitFlix::getInstance();
+    PassarelaUsuari usuariP = petitflix.getUsuari();
 
     // Crear un DTOUsuari a partir del usuario actual
-    resultat = DTOUsuari(usuari);
+    resultat = DTOUsuari(usuariP);
+
+    usuari = usuariP;
+    
 }
 
 // Método para obtener el resultado
-DTOUsuari TxConsultaUsuari::obteResultat() const {
+DTOUsuari TxConsultaUsuari::obteResultat() {
     return resultat;
 }
 
-// Método para obtener el usuario como PassarelaUsuari
-PassarelaUsuari TxConsultaUsuari::obteUsuari() const {
+PassarelaUsuari TxConsultaUsuari::obteUsuari() {
     return usuari;
 }
+

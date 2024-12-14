@@ -1,16 +1,13 @@
 #include "DTOUsuari.h"
 
 DTOUsuari::DTOUsuari() {
-	sobrenom = "";
-	nom = ""; 
-	correuElectronic = "";
-	dataNaixement = "";  
-	subscripcio = "";
+
 }
 
-DTOUsuari::DTOUsuari(string sobrenomU, string nomU, string correuElectronicU, string dataNaixementU, string subscripcioU) {
+DTOUsuari::DTOUsuari(string sobrenomU, string nomU, string contrasenyaU, string correuElectronicU, string dataNaixementU, string subscripcioU) {
 	sobrenom = sobrenomU; 
 	nom = nomU; 
+	contrasenya = contrasenyaU;
 	correuElectronic = correuElectronicU;
 	dataNaixement = dataNaixementU;
 	subscripcio = subscripcioU;
@@ -19,6 +16,7 @@ DTOUsuari::DTOUsuari(string sobrenomU, string nomU, string correuElectronicU, st
 DTOUsuari::DTOUsuari(PassarelaUsuari usuari) {
 	sobrenom = usuari.getSobrenom();
 	nom = usuari.getNom();
+	contrasenya = usuari.getContrasenya();
 	correuElectronic = usuari.getCorreuE();
 	dataNaixement = usuari.getDataN();
 	subscripcio = usuari.getSubscripcio();
@@ -32,6 +30,9 @@ string DTOUsuari::getSobrenom() {
 string DTOUsuari::getNom() {
 	return nom;
 }
+string DTOUsuari::getContrasenya() {
+	return contrasenya;
+}
 
 string DTOUsuari::getCorreuE() {
 	return correuElectronic;
@@ -43,12 +44,4 @@ string DTOUsuari::getDataN() {
 
 string DTOUsuari::getSubscripcio() {
 	return subscripcio;
-}
-
-void DTOUsuari::mostrarInformacio() const {
-	cout << "Nom: " << nom << endl;
-	cout << "Sobrenom: " << sobrenom << endl;
-	cout << "Correu Electronic: " << correuElectronic << endl;
-	cout << "Data de naixement: " << dataNaixement << endl;
-	cout << "Modalitat de Suscripcio: " << subscripcio << endl;
 }

@@ -1,5 +1,5 @@
 #pragma once
-//#include "TxConsultaUsuari.h"
+#include "TxConsultaUsuari.h"
 #include "PassarelaUsuari.h"
 #include "DTOUsuari.h"
 #include "PetitFlix.h"

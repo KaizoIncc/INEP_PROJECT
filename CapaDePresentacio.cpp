@@ -16,14 +16,15 @@ bool CapaDePresentacio::comprovarCorreu(string correu) {
 }
 
 bool CapaDePresentacio::processarIniciarSessio() {
+	cin.ignore();
 	string sobrenomU, contrasenyaU;
 	bool sessio = false;
 	system("CLS");
 	cout << "** Iniciar sessio **" << "\n";
 	cout << "Sobrenom: ";
-	cin >> sobrenomU;
+	getline(cin, sobrenomU);
 	cout << "Contrasenya: ";
-	cin >> contrasenyaU;
+	getline(cin, contrasenyaU);
 	TxIniciSessio iniSessio(sobrenomU, contrasenyaU);
 	try {
 		iniSessio.executar();		
@@ -36,11 +37,12 @@ bool CapaDePresentacio::processarIniciarSessio() {
 }
 
 bool CapaDePresentacio::processarTancarSessio() {
+	cin.ignore();
 	string resposta;
 	system("CLS");
 	cout << "** Tancar sessio **" << "\n";
 	cout << "Vols tancar la sessio? (S/N) ";
-	cin >> resposta;
+	getline(cin, resposta);
 	TxTancaSessio tancaSessio;
 	if (resposta == "S" || resposta == "s") {		
 		tancaSessio.executar();
@@ -165,6 +167,7 @@ bool CapaDePresentacio::esDataValida(const string& dataNaixement) {
 
 
 bool CapaDePresentacio::processarEsborrarUsuari() {
+	cin.ignore();
 	string contrasenya;
 	bool sessio = true;
 	system("CLS");
@@ -186,30 +189,45 @@ bool CapaDePresentacio::processarEsborrarUsuari() {
 }
 
 void CapaDePresentacio::processarConsultarUsuari() {
+	cin.ignore();
+	system("CLS");
+	cout << "** Consulta usuari **" << "\n";
 	// Crear una instancia de la transacción TxConsultaUsuari
 	TxConsultaUsuari consulta;
-
-	// Ejecutar la transacción
-	consulta.executar();
-
+	try {
+		// Ejecutar la transacción
+		consulta.executar();
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << "\n" << "\n";
+	}
+	
 	// Obtener el resultado como un DTOUsuari
 	DTOUsuari resultat = consulta.obteResultat();
-
-	// Mostrar la información del usuario en la consola
-	resultat.mostrarInformacio();
+	cout << "Nom complet: " << resultat.getNom() << "\n";
+	cout << "Sobrenom: " << resultat.getSobrenom() << "\n";
+	cout << "Correu electronic: " << resultat.getCorreuE() << "\n";
+	cout << "Data naixement (DD/MM/AAAA): " << resultat.getDataN() << "\n";
+	cout << "Modalitat subscripcio: " << resultat.getSubscripcio() << "\n";
+	cout << "\n";
 
 	// Crear una instancia de la transaccion TxInfoVisualitzacions
-	TxInfoVisualitzacions infovisualitzacions;
-
-	// Ejecutar la transacción
-	infovisualitzacions.executar();
-
-	// Mostrar la información en la consola
-	infovisualitzacions.mostrarInformacio();
+	TxInfoVisualitzacions visualitzacions;
+	try {
+		// Ejecutar la transacción
+		visualitzacions.executar();
+		TxInfoVisualitzacions::res infoVisualitzacions = visualitzacions.obteResultat();
+		cout << infoVisualitzacions.visualitzacions[0] << " pelicules visualitzades." << "\n";
+		cout << infoVisualitzacions.visualitzacions[1] << " capitols visualitzades." << "\n\n";
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << "\n" << "\n";
+	}	
+	
 }
 
-
-/* void CapaDePresentacio::processarModificarUsuari() {
+void CapaDePresentacio::processarModificarUsuari() {
+	cin.ignore();
 	system("CLS");
 	string input;
 	cout << "** Modifica usuari **" << "\n";
@@ -217,31 +235,36 @@ void CapaDePresentacio::processarConsultarUsuari() {
 	DTOUsuari usuari = cuModificaUsuari.consultaUsuari();
 	cout << "Nom complet: " << usuari.getNom() << "\n";
 	cout << "Sobrenom: " << usuari.getSobrenom() << "\n";
-	cout << "Correu electronic " << usuari.getCorreuE() << "\n";
+	cout << "Correu electronic: " << usuari.getCorreuE() << "\n";
 	cout << "Data naixement (DD/MM/AAAA): " << usuari.getDataN() << "\n";
-	cout << "Modalitat subscripció: " << usuari.getSubscripcio() << "\n";
-	cout << "*********************************************" << "\n";
+	cout << "Modalitat subscripcio: " << usuari.getSubscripcio() << "\n\n";
 	cout << "Omplir la informacio que es vol modificar ..." << "\n";
-	cout << "Nom complet: ";
-	cin >> input;
-	if (input.size() != 0) usuari.getNom() = input;
-	cout << "Contrasenya: ";
-	cin >> input;
-	if (input.size() != 0) usuari.getContrasenya() = input;
-	cout << "Correu electronic: ";
-	cin >> input;
-	if (comprovarCorreu(input)) usuari.getCorreuE() = input;
-	cout << "Data naixement (DD/MM/AAAA): ";
-	cin >> input;
-	if (input.size() != 0) usuari.getDataN() = input;
-	cout << "Modalitat subscripcio: ";
-	cin >> input;
-	if (input.size() != 0) usuari.getSubscripcio() = input;
 
-	try
-	{
-		cuModificaUsuari.modificarUsuari(usuari.getNom(), usuari.getContrasenya(), usuari.getCorreuE(), usuari.getDataN(), usuari.getSubscripcio();
-		cout << "** Dades usuari modificades **" << "\n";
+	// Capturar i actualitzar dades
+	string nom = usuari.getNom();
+	cout << "Nom complet: ";
+	getline(cin, input);
+	if (!input.empty()) nom = input;
+	string contrasenya = usuari.getContrasenya();
+	cout << "Contrasenya: ";
+	getline(cin, input);
+	if (!input.empty()) contrasenya = input;
+	string correu = usuari.getCorreuE();
+	cout << "Correu electronic: ";
+	getline(cin, input);
+	if (!input.empty() && comprovarCorreu(input)) correu = input;
+	string dataNaixement = usuari.getDataN();
+	cout << "Data naixement (DD/MM/AAAA): ";
+	getline(cin, input);
+	if (!input.empty()) dataNaixement = input;
+	string subscripcio = usuari.getSubscripcio();
+	cout << "Modalitat subscripcio: ";
+	getline(cin, input);
+	if (!input.empty()) subscripcio = input;
+
+	try {
+		cuModificaUsuari.modificarUsuari(nom, contrasenya, correu, dataNaixement, subscripcio);
+		cout << "\n" << "** Dades usuari modificades **" << "\n";
 		usuari = cuModificaUsuari.consultaUsuari();
 		cout << "Nom complet: " << usuari.getNom() << "\n";
 		cout << "Sobrenom: " << usuari.getSobrenom() << "\n";
@@ -249,8 +272,8 @@ void CapaDePresentacio::processarConsultarUsuari() {
 		cout << "Data naixement (DD/MM/AAAA): " << usuari.getDataN() << "\n";
 		cout << "Modalitat subscripcio: " << usuari.getSubscripcio() << "\n";
 	}
-	catch ( std::exception e)
+	catch (const exception& e)
 	{
 		cout << "Error: " << e.what() << "\n";
 	}
-} */
+} 

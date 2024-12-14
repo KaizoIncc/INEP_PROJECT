@@ -39,10 +39,10 @@ int main() {
                 default:
                     wcout << "Selecciona una opcio valida amb les tecles de l'1 al 4" << endl;
                 }
+                sleep_for(chrono::seconds(1));
+                system("CLS");
             }
         }
-        sleep_for(chrono::seconds(1));
-        system("CLS");
         wcout << "*********************" << endl << "    Menu Principal" << endl << "*********************" << endl;
         wcout << "1. Gestio usuaris" << endl;
         wcout << "2. Visualitzar" << endl;
@@ -54,7 +54,7 @@ int main() {
         system("CLS");
         switch (opcio) {
         case 1:
-            wcout << "- - - - - - - - - - - - - -" << endl << "    Gestio Usuari" << endl << "- - - - - - - - - - - - - -" << endl;
+            wcout << "- - - - - - - - - - - - - -" << endl << "        Gestio Usuari" << endl << "- - - - - - - - - - - - - -" << endl;
             wcout << "1. Consulta usuari" << endl;
             wcout << "2. Modifica usuari" << endl;
             wcout << "3. Esborra usuari" << endl;
@@ -72,6 +72,10 @@ int main() {
                 break;
             case 2:
                 // Modificar usuario
+                presentacio.processarModificarUsuari();
+                wcout << "Prem qualsevol tecla per continuar..." << endl;
+                // Espera a que el usuario presione una tecla
+                _getch();  // _getch() espera que el usuario presione una tecla
                 break;
             case 3:
                 // Borrar usuario
@@ -144,7 +148,8 @@ int main() {
             return 0;
         default:
             wcout << "Selecciona una opcio valida amb les tecles de l'1 al 5" << endl;
-        }
+        }        
+        system("CLS");
     }
     return 0;
 }

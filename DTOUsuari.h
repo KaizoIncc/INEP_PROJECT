@@ -4,13 +4,13 @@
 class DTOUsuari {
 private:
 
-	string sobrenom, nom, correuElectronic, dataNaixement, subscripcio;
+	string sobrenom, nom, contrasenya, correuElectronic, dataNaixement, subscripcio;
 
 public:
 
 	DTOUsuari();
 
-	DTOUsuari(string sobrenomU, string nomU, string correuElectronicU, string dataNaixementU, string subscripcioU);
+	DTOUsuari(string sobrenomU, string nomU, string contrasenyaU, string correuElectronicU, string dataNaixementU, string subscripcioU);
 
 	DTOUsuari(PassarelaUsuari usuari);
 
@@ -18,13 +18,13 @@ public:
 
 	string getNom();
 
+	string getContrasenya();
+
 	string getCorreuE();
 
 	string getDataN();
 
 	string getSubscripcio();
 
-	// Método para mostrar información (opcional)
-	void mostrarInformacio() const;
 };
 

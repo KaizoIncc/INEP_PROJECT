@@ -1,6 +1,6 @@
 #include "PetitFlix.h"
 
-PetitFlix PetitFlix::getInstance() {
+PetitFlix& PetitFlix::getInstance() {
 	static PetitFlix instance;
 	return instance;
 }
@@ -26,6 +26,7 @@ void PetitFlix::refrescarPantalla(string nomU, string contrasenyaU, string corre
 		usuari.setDataN(dataNaixamentU);
 		usuari.setSubscripcio(modalitatU);
 		usuari.modifica();
+
 	}
 	catch (...) {
 		usuari.setCorreuE(correuAntic);

@@ -6,11 +6,13 @@
 class CercadoraVisualitzaPel {
 private:
 
+	int num_visualitzacionsPel;
+
 public:
 
 	CercadoraVisualitzaPel();
 
 	~CercadoraVisualitzaPel();
 
-	int cercaVisualitzacions(const string& sobrenom);
+	int cercaVisualitzacions(string sobrenom);
 };

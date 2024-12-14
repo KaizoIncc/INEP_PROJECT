@@ -8,15 +8,22 @@ CercadoraVisualitzaSerie::~CercadoraVisualitzaSerie() {
 
 }
 
-int CercadoraVisualitzaSerie::cercaVisualitzacions(const string& sobrenom) {
-	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);
-	int num_visualitzacions;
+int CercadoraVisualitzaSerie::cercaVisualitzacions(string sobrenom) {
+	ConnexioBD& conn = ConnexioBD::getInstance(PARAMS);	
 
-	string query = "SELECT * FROM visualitzacio_capitol WHERE sobrenom_usuari = '" + sobrenom + "'";
+	//string query = "SELECT * FROM visualitzacio_capitol WHERE sobrenom_usuari = '" + sobrenom + "'";
+
+	string query = "SELECT COUNT(DISTINCT titol_serie) AS total FROM visualitzacio_capitol WHERE sobrenom_usuari = '" + sobrenom + "'";
 	ResultSet* res = conn.executarConsulta(query);
 
-	if (res->next()) num_visualitzacions = res->getInt("num_visualitzacions");
-	else num_visualitzacions = 0;
+	// Solo se tiene en cuenta las series vistas, no se tiene en cuenta las veces que ves una misma serie
+	if (res->next()) {
+		num_visualitzacionsSer = res->getInt("total");  // Obtiene el total de películas vistas
+	}
 
-	return num_visualitzacions;
+	/*while (res->next()) {
+		num_visualitzacionsSer += res->getInt("num_visualitzacions");  // Sumar las visualizaciones
+	}*/ // este cuenta todas las visualizaciones incluyendo si has vuelto a ver una serie
+
+	return num_visualitzacionsSer;
 }

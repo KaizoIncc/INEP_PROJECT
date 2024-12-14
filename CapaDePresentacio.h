@@ -6,6 +6,7 @@
 #include "TxIniciSessio.h"
 #include "TxInfoVisualitzacions.h"
 #include "DTOUsuari.h"
+#include "CUModificaUsuari.h"
 #include "PetitFlix.h"
 #include <iostream>
 #include <cstdlib>
@@ -37,7 +38,7 @@ public:
 
 	void processarConsultarUsuari();
 
-	// void processarModificarUsuari();
+	void processarModificarUsuari();
 	
 	bool processarEsborrarUsuari();
 

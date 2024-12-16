@@ -1,8 +1,5 @@
 #pragma once
-#include <iostream>
 #include "PassarelaUsuari.h"
-#include "ConnexioBD.h"
-using namespace std;
 
 class CercadoraUsuari {
 private:

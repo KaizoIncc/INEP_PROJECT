@@ -103,6 +103,10 @@ int main() {
                 break;
             case 2:
                 // Visualizar capitulo
+                presentacio.processarVisualitzarCapitol();
+                wcout << "Prem qualsevol tecla per continuar..." << endl;
+                // Espera a que el usuario presione una tecla
+                _getch();  // _getch() espera que el usuario presione una tecla
                 break;
             case 3:
                 // Consulta visualizaciones

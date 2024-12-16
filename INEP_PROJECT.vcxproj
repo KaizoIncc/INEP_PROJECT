@@ -130,10 +130,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CercadoraCapitol.cpp" />
+    <ClCompile Include="CercadoraContingut.cpp" />
+    <ClCompile Include="CercadoraTemporada.cpp" />
     <ClCompile Include="CercadoraVisualitzaPel.cpp" />
     <ClCompile Include="CercadoraVisualitzaSerie.cpp" />
     <ClCompile Include="CUModificaUsuari.cpp" />
+    <ClCompile Include="DTOCapitol.cpp" />
+    <ClCompile Include="DTOSerie.cpp" />
+    <ClCompile Include="DTOTemporada.cpp" />
     <ClCompile Include="DTOUsuari.cpp" />
+    <ClCompile Include="DTOVisualitzacioCapitol.cpp" />
+    <ClCompile Include="PassarelaCapitol.cpp" />
+    <ClCompile Include="PassarelaContingut.cpp" />
+    <ClCompile Include="PassarelaTemporada.cpp" />
+    <ClCompile Include="PassarelaVisualitzaCapitol.cpp" />
+    <ClCompile Include="TxConsultaCapitol.cpp" />
+    <ClCompile Include="TxConsultaSerie.cpp" />
+    <ClCompile Include="TxConsultaTemporada.cpp" />
     <ClCompile Include="TxConsultaUsuari.cpp" />
     <ClCompile Include="TxInfoVisualitzacions.cpp" />
     <ClCompile Include="TxIniciSessio.cpp" />
@@ -146,12 +160,28 @@
     <ClCompile Include="TxEsborrarUsuari.cpp" />
     <ClCompile Include="TxRegistrarUsuari.cpp" />
     <ClCompile Include="TxTancaSessio.cpp" />
+    <ClCompile Include="CUVisualitzarCapitol.cpp" />
+    <ClCompile Include="TxVisualitzaCapitol.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CercadoraCapitol.h" />
+    <ClInclude Include="CercadoraContingut.h" />
+    <ClInclude Include="CercadoraTemporada.h" />
     <ClInclude Include="CercadoraVisualitzaPel.h" />
     <ClInclude Include="CercadoraVisualitzaSerie.h" />
     <ClInclude Include="CUModificaUsuari.h" />
+    <ClInclude Include="DTOCapitol.h" />
+    <ClInclude Include="DTOSerie.h" />
+    <ClInclude Include="DTOTemporada.h" />
     <ClInclude Include="DTOUsuari.h" />
+    <ClInclude Include="DTOVisualitzacioCapitol.h" />
+    <ClInclude Include="PassarelaCapitol.h" />
+    <ClInclude Include="PassarelaContingut.h" />
+    <ClInclude Include="PassarelaTemporada.h" />
+    <ClInclude Include="PassarelaVisualitzaCapitol.h" />
+    <ClInclude Include="TxConsultaCapitol.h" />
+    <ClInclude Include="TxConsultaSerie.h" />
+    <ClInclude Include="TxConsultaTemporada.h" />
     <ClInclude Include="TxConsultaUsuari.h" />
     <ClInclude Include="TxInfoVisualitzacions.h" />
     <ClInclude Include="TxIniciSessio.h" />
@@ -163,6 +193,8 @@
     <ClInclude Include="TxEsborrarUsuari.h" />
     <ClInclude Include="TxRegistrarUsuari.h" />
     <ClInclude Include="TxTancaSessio.h" />
+    <ClInclude Include="CUVisualitzarCapitol.h" />
+    <ClInclude Include="TxVisualitzaCapitol.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

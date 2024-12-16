@@ -1,5 +1,4 @@
 #include "CercadoraUsuari.h"
-using namespace sql;
 
 CercadoraUsuari::CercadoraUsuari() {
 

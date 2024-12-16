@@ -277,3 +277,50 @@ void CapaDePresentacio::processarModificarUsuari() {
 		cout << "Error: " << e.what() << "\n";
 	}
 } 
+
+void CapaDePresentacio::processarVisualitzarCapitol() {
+	cin.ignore();
+	system("CLS");
+	string input;
+	int temporada, capitulo;
+	cout << "** Visualitzar Capitol **" << "\n";
+	cout << "Nom de la serie: ";
+	getline(cin, input);
+	CUVisualitzarCapitol visualizaC;	
+	DTOSerie serie = visualizaC.consultaSerie(input);
+	int temporadesT = visualizaC.consultaTemporadaS(input);
+	cout << "La serie te " << temporadesT <<  " temporades." << "\n";
+	cout << "Escull temporada: ";
+	cin >> temporada;
+	vector <DTOCapitol> capitols = visualizaC.consultaCapitol(input, temporada);
+	vector<DTOVisualitzacioCapitol> visualitzacions = visualizaC.consultaVisualitzacioC(input, temporada);
+	cout << "Llista capitols:" << "\n";
+	// Mostrar la lista de capitols
+	for (int i = 0; i < capitols.size(); ++i) {
+		cout << capitols[i].getNumeroC() << ". " << capitols[i].getTitol() << "; " << capitols[i].getDataEstrena() << "; ";
+		bool visualitzat = false;
+		// Buscar si este capítulo está en la lista de visualizaciones
+		for (auto& visualitzacio : visualitzacions) {
+			if (visualitzacio.getNumeroCapitol() == capitols[i].getNumeroC()) {
+				cout << "visualitzat el " << visualitzacio.getDataVisualitzacio() << "\n";
+				visualitzat = true;
+				break;
+			}
+		}
+		// Si no se encontró la visualización
+		if (!visualitzat) {
+			cout << "no visualitzat\n";
+		}
+	}
+	cout << "Numero de capitol a visualitzar: ";
+	cin >> capitulo;
+	cout << "Vols continuar amb la visualitzacio (S/N): ";
+	char conf;
+	cin >> conf;
+	visualizaC.visualitzarCapitol(input, temporada, capitulo);
+	DTOVisualitzacioCapitol infoVisualitzacio = visualizaC.obteResultat();
+	if (conf == 'S' or conf == 's') {
+		cout << "Visualitzacio registrada: " << infoVisualitzacio.getDataVisualitzacio() << "\n";
+	}
+	
+}

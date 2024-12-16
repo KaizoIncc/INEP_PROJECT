@@ -7,9 +7,9 @@
 #include "TxInfoVisualitzacions.h"
 #include "DTOUsuari.h"
 #include "CUModificaUsuari.h"
+#include "CUVisualitzarCapitol.h"
+#include "TxConsultaSerie.h"
 #include "PetitFlix.h"
-#include <iostream>
-#include <cstdlib>
 #include <regex>
 #include <ctime>
 
@@ -42,5 +42,16 @@ public:
 	
 	bool processarEsborrarUsuari();
 
+	void processarVisualitzarCapitol();
+
+	void processarVisualitzarPelicula();
+
+	void processarConsultarVisualitzacions();
+
+	void processarConsultarProperesEstrenes();
+
+	void processarConsultarUltimesNovetats();
+
+	void processarConsultarPeliculesMesVistes();
 };
 

@@ -13,9 +13,7 @@ void TxInfoVisualitzacions::executar() {
 	CercadoraVisualitzaSerie visualitzaS = CercadoraVisualitzaSerie();
 
 	PetitFlix& petitflix = PetitFlix::getInstance();
-	PassarelaUsuari usuari = petitflix.getUsuari();
-
-	string sobrenom = PetitFlix::getInstance().getUsuari().getSobrenom();
+	PassarelaUsuari usuari = petitflix.getUsuari();	
 
 	int nVisualitzaP = visualitzaP.cercaVisualitzacions(usuari.getSobrenom());
 	resultat.visualitzacions.push_back(nVisualitzaP);

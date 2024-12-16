@@ -1,6 +1,5 @@
 #pragma once
-#include "ConnexioBD.h"
-#include "config.txt"
+#include "PassarelaVisualitzaCapitol.h"
 
 class CercadoraVisualitzaSerie {
 private:
@@ -14,4 +13,8 @@ public:
 	~CercadoraVisualitzaSerie();
 
 	int cercaVisualitzacions(string sobrenom);
+
+	vector<PassarelaVisualitzaCapitol> cercaPerSobreNomST(string sobrenom, string titolSerie, int numeroTemporada);
+
+	PassarelaVisualitzaCapitol cercaPerVisualitzacio(string sobrenom, string titolSerie, int numeroTemporada, int numeroCapitol);
 };

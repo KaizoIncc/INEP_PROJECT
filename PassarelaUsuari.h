@@ -51,6 +51,5 @@ public:
 	void modifica();
 
 	void esborra();
-
 };
 

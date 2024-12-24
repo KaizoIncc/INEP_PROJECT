@@ -5,10 +5,12 @@
 #include "TxConsultaUsuari.h"
 #include "TxIniciSessio.h"
 #include "TxInfoVisualitzacions.h"
+#include "TxConsultaPeli.h"
 #include "DTOUsuari.h"
 #include "CUModificaUsuari.h"
 #include "CUVisualitzarCapitol.h"
 #include "TxConsultaSerie.h"
+#include "TxConsultaVisualitzacio.h"
 #include "PetitFlix.h"
 #include <regex>
 #include <ctime>

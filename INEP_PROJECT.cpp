@@ -110,6 +110,9 @@ int main() {
                 break;
             case 3:
                 // Consulta visualizaciones
+                presentacio.processarConsultarVisualitzacions();
+                wcout << "Prem qualsevol tecla per continuar..." << endl;
+                _getch();
                 break;
             case 4:
                 break;
@@ -136,6 +139,9 @@ int main() {
                 break;
             case 3:
                 // Pelis mas vistas
+                presentacio.processarConsultarPeliculesMesVistes();
+                wcout << "Prem qualsevol tecla per continuar..." << endl;
+                _getch();
                 break;
             case 4:
                 break;

@@ -324,3 +324,66 @@ void CapaDePresentacio::processarVisualitzarCapitol() {
 	}
 	
 }
+
+void CapaDePresentacio::processarConsultarVisualitzacions() {
+	try {
+		cout << "** Consultar Visualitzacions **" << endl;
+
+		TxConsultaVisualitzacio consulta;
+		auto resultat = consulta.executar();
+
+		// Mostrar resultados
+		auto pelicules = resultat.getPelicules();
+		auto series = resultat.getSeries();
+
+		if (pelicules.empty() && series.empty()) {
+			cout << "No hi ha visualitzacions disponibles." << endl;
+			return;
+		}
+
+		cout << "---- Visualitzacions de Pelicules ----" << endl;
+		for (int i = 0; i < pelicules.size(); ++i) {
+			cout << "Data: " << pelicules[i].getData()
+				<< ", Titol: " << pelicules[i].getTitol()
+				<< ", Descripcio: " << pelicules[i].getDescripcio()
+				<< ", Qualificacio per edats: " << pelicules[i].getQualificacio()
+				<< ", Vegades visualitzat: " << pelicules[i].getVegades() << endl;
+		}
+
+		cout << "\n---- Visualitzacions de Series ----" << endl;
+		for (int i = 0; i < series.size(); ++i) {
+			cout << "Data: " << series[i].getData()
+				<< ", Titol serie: " << series[i].getTitolSerie()
+				<< ", Temporada: " << series[i].getNumTemporada()
+				<< ", Capitol: " << series[i].getNumCapitol()
+				<< ", Qualificacio per edats: " << series[i].getQualificacio()
+				<< ", Vegades visualitzat: " << series[i].getVegades() << endl;
+		}
+	}
+	catch (const runtime_error& e) {
+		cerr << "Error: " << e.what() << endl;
+	}
+}
+
+void CapaDePresentacio::processarConsultarPeliculesMesVistes() {
+	try {
+		cout << "** Pelicules mes vistes **" << endl;
+
+		TxConsultaPeli transaccio;
+		vector<PeliculaDTO> peliculesDTO = transaccio.executar();
+
+		for (int i = 1; i <= peliculesDTO.size(); ++i) {
+			cout << i << ". " << peliculesDTO[i - 1].getTitol() << " | Edat: "
+				<< peliculesDTO[i - 1].getQualificacioEdats() << " | Duracio: "
+				<< peliculesDTO[i - 1].getDuracio() << " min | Visualitzacions: "
+				<< peliculesDTO[i - 1].getNumVisualitzacions() << " |" ;
+
+			if (peliculesDTO[i - 1].teDataVisualitzacio()) cout << " Data de visualitzacio: " << peliculesDTO[i - 1].getDataVisualitzacio();
+ 
+			cout << endl;
+		}
+	}
+	catch (const runtime_error& e) {
+		cout << "Error: " << e.what() << endl;
+	}
+}

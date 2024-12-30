@@ -132,15 +132,19 @@
   <ItemGroup>
     <ClCompile Include="CercadoraCapitol.cpp" />
     <ClCompile Include="CercadoraPelicula.cpp" />
+    <ClCompile Include="CercadoraRelacionat.cpp" />
     <ClCompile Include="CercadoraVisualitzacio.cpp" />
     <ClCompile Include="CercadoraContingut.cpp" />
     <ClCompile Include="CercadoraTemporada.cpp" />
     <ClCompile Include="CercadoraVisualitzaPel.cpp" />
     <ClCompile Include="CercadoraVisualitzaSerie.cpp" />
     <ClCompile Include="CUModificaUsuari.cpp" />
+    <ClCompile Include="CUVisualitzarPeli.cpp" />
     <ClCompile Include="DTOCapitol.cpp" />
     <ClCompile Include="DTOConsultaVisualitzacio.cpp" />
+    <ClCompile Include="DTOPeli.cpp" />
     <ClCompile Include="DTOPelicula.cpp" />
+    <ClCompile Include="DTOProperesEstrenes.cpp" />
     <ClCompile Include="DTOSerie.cpp" />
     <ClCompile Include="DTOTemporada.cpp" />
     <ClCompile Include="DTOUsuari.cpp" />
@@ -169,6 +173,8 @@
     <ClCompile Include="PassarelaUsuari.cpp" />
     <ClCompile Include="PetitFlix.cpp" />
     <ClCompile Include="TxEsborrarUsuari.cpp" />
+    <ClCompile Include="TxPeliculesRelacionades.cpp" />
+    <ClCompile Include="TxProperesEstrenes.cpp" />
     <ClCompile Include="TxRegistrarUsuari.cpp" />
     <ClCompile Include="TxTancaSessio.cpp" />
     <ClCompile Include="CUVisualitzarCapitol.cpp" />
@@ -177,15 +183,19 @@
   <ItemGroup>
     <ClInclude Include="CercadoraCapitol.h" />
     <ClInclude Include="CercadoraPelicula.h" />
+    <ClInclude Include="CercadoraRelacionat.h" />
     <ClInclude Include="CercadoraVisualitzacio.h" />
     <ClInclude Include="CercadoraContingut.h" />
     <ClInclude Include="CercadoraTemporada.h" />
     <ClInclude Include="CercadoraVisualitzaPel.h" />
     <ClInclude Include="CercadoraVisualitzaSerie.h" />
     <ClInclude Include="CUModificaUsuari.h" />
+    <ClInclude Include="CUVisualitzarPeli.h" />
     <ClInclude Include="DTOCapitol.h" />
     <ClInclude Include="DTOConsultaVisualitzacio.h" />
+    <ClInclude Include="DTOPeli.h" />
     <ClInclude Include="DTOPelicula.h" />
+    <ClInclude Include="DTOProperesEstrenes.h" />
     <ClInclude Include="DTOSerie.h" />
     <ClInclude Include="DTOTemporada.h" />
     <ClInclude Include="DTOUsuari.h" />
@@ -213,6 +223,8 @@
     <ClInclude Include="PassarelaUsuari.h" />
     <ClInclude Include="PetitFlix.h" />
     <ClInclude Include="TxEsborrarUsuari.h" />
+    <ClInclude Include="TxPeliculesRelacionades.h" />
+    <ClInclude Include="TxProperesEstrenes.h" />
     <ClInclude Include="TxRegistrarUsuari.h" />
     <ClInclude Include="TxTancaSessio.h" />
     <ClInclude Include="CUVisualitzarCapitol.h" />

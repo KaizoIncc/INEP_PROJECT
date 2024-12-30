@@ -325,6 +325,74 @@ void CapaDePresentacio::processarVisualitzarCapitol() {
 	
 }
 
+void CapaDePresentacio::processarVisualitzarPelicula()
+{
+	try {
+		string nomP, contesta;
+		PetitFlix& flix = PetitFlix::getInstance();
+		// Obtenir l'usuari
+		PassarelaUsuari usuari = flix.getUsuari();
+		cout << "** Visualitzar Pelicula **" << endl;		//"** Visualitzar Pel·lícula **"
+		cout << "Nom pelicula: ";					//"Nom pel·lícula: "
+		cin.ignore();
+		getline(cin, nomP);
+
+		CUVisualitzarPeli CUvisualizarPeli(nomP);
+		DTOPeli pelicula = CUvisualizarPeli.obteDTOPeli();
+
+
+		//comprobar que la peli existeix
+		if (!CUvisualizarPeli.existeixP(pelicula)) {
+			cout << "No existeix cap pelicula amb el nom " << nomP << endl;
+			return;
+		}
+
+		if (!CUvisualizarPeli.edat_adecuada(usuari.getDataN(), pelicula.getQualificacio())) {
+			cout << "No tens l'edat adecuada per veure aquest contingut" << endl;
+			return;
+		}
+
+		if (!CUvisualizarPeli.peli_estrenada(pelicula.getDataE())) {
+			cout << "Aquesta pelicula encara no ha estat estrenada" << endl;
+			return;
+		}
+
+		cout << "Informacio pelicula ...\n";
+		cout << "Nom pelicula: " << pelicula.getTitol() << endl;
+		cout << "Descripcio: " << pelicula.getDescripcio() << endl;
+		cout << "Qualificacio edat: " << pelicula.getQualificacio() << endl;
+		cout << "Data estrena: " << pelicula.getDataE() << endl;
+		cout << "Duracio: " << pelicula.getDuracio() << " min" << endl;
+
+		cout << "Vols continuar amb la visualitzacio (S/N): "; //"Vols continuar amb la visualització (S/N): "
+		cin >> contesta;
+		if (contesta == "S" || contesta == "s") {
+			auto now = chrono::system_clock::now();
+			time_t current_time1 = chrono::system_clock::to_time_t(now);
+			ostringstream tiempoActualStream;
+			tiempoActualStream << put_time(localtime(&current_time1), "%Y-%m-%d %H:%M");
+			string tiempoActual = tiempoActualStream.str();
+
+			// registrar visualització
+			CUvisualizarPeli.visualitzarPeli();
+			cout << "Visualitzacio rgistrada: " << tiempoActual << endl;
+			cout << "Pelicules relacionades: ";
+			TxPeliculesRelacionades TxPeliculesRelac(nomP);
+			TxPeliculesRelac.executar();
+			vector<DTOPeli> pelicules_relacionades = TxPeliculesRelac.obteResultat();
+			for (int i = 0; i < pelicules_relacionades.size(); i++) {
+				cout << "- " << pelicules_relacionades[i].getTitol() << "; " << pelicules_relacionades[i].getDescripcio() << "; " << pelicules_relacionades[i].getQualificacio() << "; " << pelicules_relacionades[i].getDuracio() << " min; " << pelicules_relacionades[i].getDataE() << endl;
+			}
+		}
+		else {
+			return;
+		}
+	}
+	catch (const exception& e) {
+		cout << e.what() << "\n";
+	}
+}
+
 void CapaDePresentacio::processarConsultarVisualitzacions() {
 	try {
 		cout << "** Consultar Visualitzacions **" << endl;
@@ -362,6 +430,47 @@ void CapaDePresentacio::processarConsultarVisualitzacions() {
 	}
 	catch (const runtime_error& e) {
 		cerr << "Error: " << e.what() << endl;
+	}
+}
+
+void CapaDePresentacio::processarConsultarProperesEstrenes()
+{
+	string modalitat;
+	PetitFlix& flix = PetitFlix::getInstance();
+	// Obtenir l'usuari
+	PassarelaUsuari usuari = flix.getUsuari();
+	cout << "** Properes estrenes **" << endl;
+	if (usuari.getNom() != "") {
+		modalitat = usuari.getSubscripcio();
+		cout << "Modalitat: " << modalitat << endl;
+	}
+	else {
+		cout << "insereix una modalitat (Completa/Infantil/Cinefil) per defecte s assignara Completa" << endl;
+		cout << "Modalitat: ";
+		cin >> modalitat;
+		if (modalitat == "Infantil") {
+			modalitat = "Infantil";
+		}
+		else if (modalitat == "Cinefil") {
+			modalitat = "Cinefil";
+		}
+		else {
+			modalitat = "Completa";
+		}
+	}
+	TxProperesEstrenes properes_estrenas(modalitat);
+	vector<DTOProperesEstrenes> estrenes;
+	properes_estrenas.executar();
+	estrenes = properes_estrenas.obteResultat();
+	string any, mes, dia;
+	for (int i = 0; i < estrenes.size(); i++) {
+		string data = estrenes[i].getDataE();
+		any = data.substr(0, 4);
+		mes = data.substr(5, 2);
+		dia = data.substr(8, 2);
+		cout << to_string(i + 1) << ".- " << dia << "/" << mes << "/" << any << " [";
+		cout << estrenes[i].getTipus() << "]: " << estrenes[i].getTitol() << "; ";
+		cout << estrenes[i].getQualificacio() << "; " << estrenes[i].getDuracio_nTemporada() << "." << endl;
 	}
 }
 

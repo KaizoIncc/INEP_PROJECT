@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "ConnexioBD.h"
+#include "PassarelaVisualitzacioPelicula.h"
 #include "config.txt"
 
 class CercadoraVisualitzaPel {
@@ -15,4 +16,6 @@ public:
 	~CercadoraVisualitzaPel();
 
 	int cercaVisualitzacions(string sobrenom);
+
+	PasarelaVisualitzacioPelicula obtenirVisualitzarPeli(string sobrenom, string nomP);
 };

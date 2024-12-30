@@ -11,5 +11,7 @@ public:
     ~CercadoraContingut();
 
     PassarelaContingut cercaPerTitol(string titol);
+
+    PassarelaContingut cercaContingutPeli(string titol);
 };
 

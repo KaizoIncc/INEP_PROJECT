@@ -27,5 +27,9 @@ public:
     string getDataEstrena();
 
     string getQualificacio();
+
+    string getNumeroTemporada();
+    
+    string getTitolSerie();
 };
 

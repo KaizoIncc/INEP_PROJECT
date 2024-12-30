@@ -27,3 +27,20 @@ int CercadoraVisualitzaPel::cercaVisualitzacions(string sobrenom) {
 
 	return num_visualitzacionsPel;
 }
+
+PasarelaVisualitzacioPelicula CercadoraVisualitzaPel::obtenirVisualitzarPeli(string sobrenom, string nomP)
+{
+	PasarelaVisualitzacioPelicula Vp;
+	ConnexioBD& con = ConnexioBD::getInstance(PARAMS);
+	string sql = "SELECT * FROM inep06.visualitzacio_pelicula WHERE sobrenom_usuari = '" + sobrenom + "' AND titol_pelicula = '" + nomP +"'";
+	ResultSet* res = con.executarConsulta(sql);
+	// Si no troba cap fila, activa excepció
+	if (!res->next()) {
+		return Vp;
+	}
+	else {
+		Vp = PasarelaVisualitzacioPelicula(res->getString("sobrenom_usuari"), res->getString("titol_pelicula"), res->getString("data"), res->getString("num_visualitzacions"));
+		delete res;
+	}
+	return Vp;
+}

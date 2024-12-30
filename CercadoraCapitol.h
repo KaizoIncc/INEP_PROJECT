@@ -11,5 +11,10 @@ public:
 	~CercadoraCapitol();
 
 	vector<PassarelaCapitol> cercaPerTemporada(string titolSerie, int numeroTemporada);
+
+	vector<PassarelaCapitol> cercaPerEstrena(string dataA);
+
+	vector<PassarelaCapitol> cercaPerEstrenaInfantil(string dataA);
+
 };
 

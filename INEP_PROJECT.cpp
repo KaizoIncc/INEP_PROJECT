@@ -99,7 +99,11 @@ int main() {
             system("CLS");
             switch (opcio) {
             case 1:
-                // Visualizar peli
+                // Visualizar peli (M)
+                presentacio.processarVisualitzarPelicula();
+                wcout << endl << "Prem qualsevol tecla per continuar..." << endl;
+                // Espera a que el usuario presione una tecla
+                _getch();  // _getch() espera que el usuario presione una tecla
                 break;
             case 2:
                 // Visualizar capitulo
@@ -132,7 +136,11 @@ int main() {
             system("CLS");
             switch (opcio) {
             case 1:
-                // Proximos estrenos
+                // Proximos estrenos (M)
+                presentacio.processarConsultarProperesEstrenes();
+                wcout << endl << "Prem qualsevol tecla per continuar..." << endl;
+                // Espera a que el usuario presione una tecla
+                _getch();  // _getch() espera que el usuario presione una tecla
                 break;
             case 2:
                 // Novedades

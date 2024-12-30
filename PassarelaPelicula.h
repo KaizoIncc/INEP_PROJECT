@@ -10,9 +10,13 @@ private:
     int duracio;
     int numVisualitzacions;
     string dataVisualitzacio;
+    string data_estrena;
+    string duracioS;
 
 public:
     PeliculaInfo(string titol, string qualificacioEdats, int duracio, int numVisualitzacions, string dataVisualitzacio);
+
+    PeliculaInfo(string titol, string data_estrena, string duracio);
 
     PeliculaInfo();
 
@@ -27,6 +31,11 @@ public:
     int getNumVisualitzacions();
 
     string getDataVisualitzacio();
+
+    string getDataE();
+    
+    string getDuracioS();
+
     // Setters
     void setTitol(string titol);
 

@@ -8,6 +8,13 @@ PeliculaInfo::PeliculaInfo(string titolP, string qualificacioEdatsP, int duracio
 	dataVisualitzacio = dataVisualitzacioP;
 }
 
+PeliculaInfo::PeliculaInfo(string titolP, string data_estrenaP, string duracioP)
+{
+	titol = titolP;
+	data_estrena = data_estrenaP;
+	duracioS = duracioP;
+}
+
 PeliculaInfo::PeliculaInfo() {
 	titol = "";
 	qualificacioEdats = "";
@@ -38,6 +45,14 @@ int PeliculaInfo::getNumVisualitzacions() {
 
 string PeliculaInfo::getDataVisualitzacio() {
 	return dataVisualitzacio;
+}
+
+string PeliculaInfo::getDataE() {
+	return data_estrena;
+}
+
+string PeliculaInfo::getDuracioS() {
+	return duracioS;
 }
 
 void PeliculaInfo::setTitol(string titolP) {

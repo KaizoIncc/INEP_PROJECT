@@ -36,3 +36,13 @@ string PassarelaCapitol::getDataEstrena() {
 string PassarelaCapitol::getQualificacio() {
 	return qualificacio; 
 }
+
+string PassarelaCapitol::getNumeroTemporada()
+{
+	return to_string(numeroTemporada);
+}
+
+string PassarelaCapitol::getTitolSerie()
+{
+	return titolS;
+}

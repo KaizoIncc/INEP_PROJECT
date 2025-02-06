@@ -1,1 +1,1 @@
-#define PARAMS "servidor=ubiwan.epsevg.upc.edu:3306 usuario=inep06 password=ahp8Oa4ohxaeyu database=inep06"
+#define PARAMS "servidor=eduardo.pablo.jose:0000 usuario=julian password=pepito database=juanito"
